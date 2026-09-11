@@ -127,7 +127,7 @@ export default function Banner() {
           className="absolute inset-0 w-full h-full object-cover -z-20 pointer-events-none"
         >
           <source src="/videos/hero_video.mp4" type="video/mp4" />
-          Your browser does not support the video tag now.
+          Your browser does not support the video tag.
         </video>
 
         {/* Video Color Overlay for contrast and optimal text readability */}
