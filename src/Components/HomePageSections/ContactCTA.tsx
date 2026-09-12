@@ -22,18 +22,27 @@ const BUDGET_OPTIONS = [
   "More than $50K",
 ];
 
-export default function ContactCTA() {
+interface ContactCTAProps {
+  defaultService?: string;
+}
+
+export default function ContactCTA({ defaultService }: ContactCTAProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const leftColRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const initialService =
+    defaultService && SERVICE_OPTIONS.includes(defaultService)
+      ? defaultService
+      : SERVICE_OPTIONS[0];
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     company: "",
-    service: SERVICE_OPTIONS[0],
+    service: initialService,
     budget: BUDGET_OPTIONS[1],
     details: "",
   });
@@ -161,8 +170,9 @@ export default function ContactCTA() {
     <section
       ref={sectionRef}
       id="contact"
-      className="w-full px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-28 bg-white overflow-hidden isolate"
+      className="w-full px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-28 bg-white overflow-hidden isolate relative"
     >
+      <span id="get-started" className="absolute -top-24 opacity-0 pointer-events-none" />
       {/* Centered Premium Dark CTA Card */}
       <div
         ref={cardRef}

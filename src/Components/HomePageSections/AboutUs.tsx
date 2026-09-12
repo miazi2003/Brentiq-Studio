@@ -219,7 +219,6 @@ export default function AboutUs() {
             {/* About Us Button */}
             <div className="mt-6 sm:mt-8">
               <Link
-                href="#about"
                 href="/about"
                 className="font-button inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-[#FF5520]/25 group"
               >

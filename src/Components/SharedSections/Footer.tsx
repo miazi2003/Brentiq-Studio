@@ -6,14 +6,8 @@ import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Selected Works", href: "#works" },
-  { label: "How We Work", href: "#process" },
-  { label: "FAQs", href: "#questions" },
-  { label: "Start a Project", href: "#contact" },
   { label: "About Us", href: "/about" },
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
   { label: "Selected Works", href: "/#works" },
   { label: "How We Work", href: "/#process" },
   { label: "FAQs", href: "/#questions" },
@@ -21,12 +15,12 @@ const NAV_LINKS = [
 ];
 
 const SERVICE_LINKS = [
-  { label: "Custom Web Development", href: "#services" },
-  { label: "UI/UX Design & Systems", href: "#services" },
-  { label: "Shopify & E-commerce", href: "#services" },
-  { label: "Brand Strategy & Identity", href: "#services" },
-  { label: "Motion & Video Editing", href: "#services" },
-  { label: "Performance Marketing", href: "#services" },
+  { label: "Custom Web Development", href: "/services" },
+  { label: "UI/UX Design & Systems", href: "/services" },
+  { label: "Shopify & E-commerce", href: "/services" },
+  { label: "Brand Strategy & Identity", href: "/services" },
+  { label: "Motion & Video Editing", href: "/services" },
+  { label: "Performance Marketing", href: "/services" },
 ];
 
 const TECH_LINKS = [

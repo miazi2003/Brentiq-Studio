@@ -7,16 +7,9 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home", active: true },
-  { href: "#about", label: "About" },
-  { href: "#services", label: "Services" },
-  { href: "#works", label: "Works" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#questions", label: "Questions" },
-  { href: "#contact", label: "Contact" },
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/#services", label: "Services" },
+  { href: "/services", label: "Services" },
   { href: "/#works", label: "Works" },
   { href: "/#process", label: "Process" },
   { href: "/#questions", label: "Questions" },
@@ -47,19 +40,6 @@ export default function Navbar() {
 
         {/* Center: Navigation Links (Plus Jakarta Sans) */}
         <div className="hidden lg:flex items-center gap-9 text-[15px] font-medium font-body">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className={`transition-colors py-1.5 relative ${
-                link.active
-                  ? "text-[#FF5520] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2.5px] after:bg-[#FF5520] after:rounded-full"
-                  : "text-gray-700 hover:text-gray-950"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
           {NAV_LINKS.map((link) => {
             const isActive =
               link.href === "/"
@@ -115,20 +95,6 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="lg:hidden border-b border-gray-100 bg-white px-4 pt-2 pb-6 shadow-xl">
           <div className="flex flex-col space-y-3 font-body">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className={`py-2.5 px-3 rounded-lg text-base font-medium transition-colors ${
-                  link.active
-                    ? "bg-orange-50 text-[#FF5520] font-semibold"
-                    : "text-gray-700 hover:bg-gray-50 hover:text-gray-950"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
             {NAV_LINKS.map((link) => {
               const isActive =
                 link.href === "/"

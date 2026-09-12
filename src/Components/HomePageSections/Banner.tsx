@@ -6,10 +6,10 @@ import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 
 const SERVICES_LIST = [
-  { label: "UI UX Design", href: "#services" },
-  { label: "Development", href: "#services" },
-  { label: "Website Design", href: "#services" },
-  { label: "Motion Design", href: "#services" },
+  { label: "UI UX Design", href: "/services" },
+  { label: "Development", href: "/services" },
+  { label: "Website Design", href: "/services" },
+  { label: "Motion Design", href: "/services" },
 ];
 
 export default function Banner() {

@@ -30,13 +30,44 @@ export default function SmoothScroll() {
     gsap.ticker.add(updateTicker);
     gsap.ticker.lagSmoothing(0);
 
-    // Initial refresh to ensure ScrollTrigger matches exact rendered dimensions
+    // Initial refresh and hash target scroll
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 150);
+
+      if (window.location.hash) {
+        try {
+          const target = document.querySelector(window.location.hash);
+          if (target) {
+            lenis.scrollTo(target as HTMLElement, { offset: -30, duration: 1.2 });
+          }
+        } catch {
+          // ignore selector errors
+        }
+      }
+    }, 200);
+
+    const handleHashClick = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement)?.closest("a");
+      if (!target) return;
+      const href = target.getAttribute("href");
+      if (href && (href.startsWith("#") || (href.startsWith("/#") && window.location.pathname === "/"))) {
+        const hash = href.includes("#") ? href.substring(href.indexOf("#")) : "";
+        if (hash) {
+          const el = document.querySelector(hash);
+          if (el) {
+            e.preventDefault();
+            lenis.scrollTo(el as HTMLElement, { offset: -30, duration: 1.2 });
+            window.history.pushState(null, "", href);
+          }
+        }
+      }
+    };
+
+    document.addEventListener("click", handleHashClick);
 
     return () => {
       clearTimeout(timer);
+      document.removeEventListener("click", handleHashClick);
       gsap.ticker.remove(updateTicker);
       lenis.destroy();
     };

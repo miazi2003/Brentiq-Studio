@@ -1,7 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Stack+Sans+Notch:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Stack+Sans+Notch:wght@200..700&display=swap');
 @import "tailwindcss";
 
 /* Direct Font Face Declarations for Google Fonts */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/instrumentserif/v3/pxidypU1s94B5CSnQs9vWD1g0gM.woff2') format('woff2');
+}
 @font-face {
   font-family: 'Stack Sans Notch';
   font-style: normal;
@@ -83,6 +90,13 @@ button, .font-button, a[role="button"] {
   font-family: "Plus Jakarta Sans", sans-serif !important;
   font-optical-sizing: auto;
   font-style: normal;
+}
+
+/* Editorial Serif Emphasis */
+.font-serif-emphasis {
+  font-family: "Instrument Serif", "Playfair Display", Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 400;
 }
 
 /* Hide scrollbar while keeping scroll functionality */
