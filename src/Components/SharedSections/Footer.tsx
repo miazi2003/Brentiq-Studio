@@ -104,7 +104,10 @@ export default function Footer() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover -z-20 pointer-events-none opacity-80 sm:opacity-90"
         >
-          <source src="/videos/hero_video.mp4" type="video/mp4" />
+          <source
+            src="https://res.cloudinary.com/i1hmtat5/video/upload/vecteezy_abstract-orange-black-fluid-gradient-background-animation_76744182_iayqb2.mp4"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
 
