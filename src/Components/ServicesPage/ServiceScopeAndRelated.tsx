@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,30 +10,23 @@ import ServiceProjectsCarousel from "./ServiceProjectsCarousel";
 
 interface Props {
   service: ServiceItemData;
-  otherServices: ServiceItemData[];
 }
 
-export default function ServiceScopeAndRelated({ service, otherServices }: Props) {
+export default function ServiceScopeAndRelated({ service }: Props) {
   const scopeSectionRef = useRef<HTMLElement>(null);
   const leftColRef = useRef<HTMLDivElement>(null);
   const rightContainerRef = useRef<HTMLDivElement>(null);
   const capabilityCardsRef = useRef<(HTMLDivElement | null)[]>([]);
   const techPillsRef = useRef<(HTMLSpanElement | null)[]>([]);
 
-  const relatedSectionRef = useRef<HTMLElement>(null);
-  const relatedHeaderRef = useRef<HTMLDivElement>(null);
-  const relatedCardsRef = useRef<(HTMLAnchorElement | null)[]>([]);
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const scopeSection = scopeSectionRef.current;
-    const relatedSection = relatedSectionRef.current;
-
     if (!scopeSection) return;
 
     const ctx = gsap.context(() => {
-      // 1. SCOPE SECTION ANIMATION TIMELINE
+      // SCOPE SECTION ANIMATION TIMELINE
       const scopeTl = gsap.timeline({
         scrollTrigger: {
           trigger: scopeSection,
@@ -109,43 +101,6 @@ export default function ServiceScopeAndRelated({ service, otherServices }: Props
           },
           0.6
         );
-      }
-
-      // 2. RELATED SERVICES SECTION ANIMATION TIMELINE
-      if (relatedSection) {
-        const relatedTl = gsap.timeline({
-          scrollTrigger: {
-            trigger: relatedSection,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
-        });
-
-        if (relatedHeaderRef.current) {
-          relatedTl.fromTo(
-            relatedHeaderRef.current,
-            { opacity: 0, y: 25 },
-            { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
-            0
-          );
-        }
-
-        const validRelatedCards = relatedCardsRef.current.filter(Boolean);
-        if (validRelatedCards.length > 0) {
-          relatedTl.fromTo(
-            validRelatedCards,
-            { opacity: 0, y: 45, scale: 0.96 },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.8,
-              stagger: 0.12,
-              ease: "power3.out",
-            },
-            0.15
-          );
-        }
       }
     });
 
@@ -298,95 +253,6 @@ export default function ServiceScopeAndRelated({ service, otherServices }: Props
       {/* 3. MODERN HORIZONTAL CAROUSEL SHOWCASING WORKS FOR THIS SPECIFIC SERVICE  */}
       {/* ========================================================================= */}
       <ServiceProjectsCarousel service={service} />
-
-      {/* ========================================================================= */}
-      {/* 4. MODERNIZED & ANIMATED RELATED SERVICES SECTION                         */}
-      {/* ========================================================================= */}
-      <section
-        ref={relatedSectionRef}
-        className="w-full px-4 sm:px-6 lg:px-10 py-16 sm:py-24 max-w-7xl mx-auto border-t border-gray-100"
-      >
-        <div
-          ref={relatedHeaderRef}
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12"
-        >
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-xs font-bold uppercase tracking-wider text-[#FF5520] font-heading mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5520]" />
-              Explore Ecosystem
-            </div>
-            <h3 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-950 tracking-tight">
-              Related Services
-            </h3>
-          </div>
-
-          <Link
-            href="/services"
-            className="font-button inline-flex items-center gap-2 text-sm font-bold text-gray-700 hover:text-[#FF5520] transition-colors group"
-          >
-            <span>View All Services</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </div>
-
-        {/* Visual Cards with Hover Image Previews and Glassmorphic Pills */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {otherServices.map((item: ServiceItemData, idx: number) => (
-            <Link
-              key={item.slug}
-              ref={(el) => {
-                relatedCardsRef.current[idx] = el;
-              }}
-              href={`/services/${item.slug}`}
-              className="group relative rounded-[28px] overflow-hidden bg-white border border-gray-200/90 hover:border-[#FF5520]/40 shadow-sm hover:shadow-2xl hover:shadow-gray-300/60 transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between"
-            >
-              {/* Top Image Preview with Zoom on Hover */}
-              <div className="relative w-full h-[200px] sm:h-[220px] overflow-hidden bg-gray-900">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-                {/* Number & Category Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-10">
-                  <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-xs font-bold text-white font-heading">
-                    /{item.number}
-                  </span>
-                  <span className="px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-md text-[11px] font-bold text-gray-900 font-heading">
-                    {item.categoryLabel}
-                  </span>
-                </div>
-              </div>
-
-              {/* Bottom Card Content */}
-              <div className="p-6 sm:p-7 flex flex-col justify-between flex-1 space-y-4">
-                <div>
-                  <h4 className="font-heading text-2xl font-bold text-gray-950 group-hover:text-[#FF5520] transition-colors duration-300 tracking-tight mb-2">
-                    {item.title}
-                  </h4>
-                  <p className="font-body text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed">
-                    {item.headline}
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
-                  <span className="font-heading text-xs font-bold uppercase tracking-wider text-gray-900 group-hover:text-[#FF5520] transition-colors">
-                    Explore Details
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-gray-100 group-hover:bg-[#FF5520] text-gray-700 group-hover:text-white transition-all duration-300 flex items-center justify-center">
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
     </>
   );
 }
-

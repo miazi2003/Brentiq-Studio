@@ -64,8 +64,6 @@ export default async function IndividualServicePage({ params }: Props) {
     notFound();
   }
 
-  const otherServices = SERVICES_DATA.filter((s) => s.slug !== slug).slice(0, 3);
-
   // Split title for outline typography styling
   const words = service.title.toUpperCase().split(" ");
   const firstWord = words[0] || service.title;
@@ -183,9 +181,9 @@ export default async function IndividualServicePage({ params }: Props) {
       </section>
 
       {/* ========================================================================= */}
-      {/* 2 & 3. MODERNIZED & ANIMATED SCOPE, CAPABILITIES & RELATED SERVICES        */}
+      {/* 2 & 3. MODERNIZED & ANIMATED SCOPE, CAPABILITIES & SERVICE PROJECTS        */}
       {/* ========================================================================= */}
-      <ServiceScopeAndRelated service={service} otherServices={otherServices} />
+      <ServiceScopeAndRelated service={service} />
 
       {/* ========================================================================= */}
       {/* 4. INTERACTIVE CTA CONTACT FORM COMPONENT (MATCHING HOME PAGE)           */}
