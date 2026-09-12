@@ -12,6 +12,12 @@ const NAV_LINKS = [
   { label: "How We Work", href: "#process" },
   { label: "FAQs", href: "#questions" },
   { label: "Start a Project", href: "#contact" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/#services" },
+  { label: "Selected Works", href: "/#works" },
+  { label: "How We Work", href: "/#process" },
+  { label: "FAQs", href: "/#questions" },
+  { label: "Start a Project", href: "/#contact" },
 ];
 
 const SERVICE_LINKS = [
