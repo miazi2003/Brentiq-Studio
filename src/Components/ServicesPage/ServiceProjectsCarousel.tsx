@@ -10,7 +10,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper/modules";
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
 
 // Import Swiper styles exactly as required
@@ -170,12 +170,7 @@ export default function ServiceProjectsCarousel({ service }: Props) {
           centeredSlides={true}
           slidesPerView={"auto"}
           loop={true}
-          speed={900}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
+          speed={800}
           coverflowEffect={{
             rotate: 35,
             stretch: 0,
@@ -187,7 +182,7 @@ export default function ServiceProjectsCarousel({ service }: Props) {
             clickable: true,
             el: ".coverflow-pagination",
           }}
-          modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
+          modules={[EffectCoverflow, Pagination, Navigation]}
           className="coverflow-showcase-swiper !w-full !py-8 sm:!py-12"
         >
           {displayProjects.map((proj: ServiceProjectItem, idx: number) => (
