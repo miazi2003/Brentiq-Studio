@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const ABOUT_TEXT =
-  "We’re A Creative Agency Helping Brands Grow Through Strategy, Design, And Innovation. The Focus Of Our Work Is To Create Inspiring Digital Experiences.";
+  "We are A Creative Agency Helping Brands Grow Through Strategy, Design, And Innovation. The Focus Of Our Work Is To Create Inspiring Digital Experiences.";
 
 const STATS_DATA = [
   {
