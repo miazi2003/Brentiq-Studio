@@ -116,6 +116,7 @@ export default function Banner() {
   return (
     <section
       ref={containerRef}
+      id="home"
       className="relative w-full min-h-screen lg:h-screen min-h-[680px] bg-black text-white overflow-hidden flex flex-col justify-between isolate select-none"
     >
       {/* 1. Background Video (Spans 100% of viewport edge-to-edge) */}

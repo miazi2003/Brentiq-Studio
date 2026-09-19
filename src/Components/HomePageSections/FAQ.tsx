@@ -118,8 +118,9 @@ export default function FAQ() {
     <section
       ref={sectionRef}
       id="faq"
-      className="w-full px-3 sm:px-5 lg:px-6 py-4 sm:py-6 bg-white"
+      className="w-full px-3 sm:px-5 lg:px-6 py-4 sm:py-6 bg-white relative"
     >
+      <span id="questions" className="absolute -top-24 opacity-0 pointer-events-none" />
       {/* Outer Card Container */}
       <div
         ref={containerRef}

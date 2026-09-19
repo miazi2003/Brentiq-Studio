@@ -44,7 +44,7 @@ const STATS = [
 
 export default function AboutPage() {
   return (
-    <div className="w-full bg-white text-gray-900 min-h-screen">
+    <div className="w-full bg-white text-gray-900 min-h-screen" suppressHydrationWarning>
       {/* ========================================================================= */}
       {/* 1. HERO SECTION                                                          */}
       {/* ========================================================================= */}

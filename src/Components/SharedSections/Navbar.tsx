@@ -7,9 +7,9 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#services", label: "Services" },
   { href: "/#works", label: "Works" },
   { href: "/#process", label: "Process" },
   { href: "/#questions", label: "Questions" },
@@ -19,27 +19,51 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOverHero, setIsOverHero] = useState(true);
   const pathname = usePathname();
 
   const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      if (!isHomePage) {
+        setIsOverHero(false);
+        return;
+      }
+
+      const heroEl = document.getElementById("home");
+      const heroHeight = heroEl ? heroEl.offsetHeight : window.innerHeight;
+      const headerThreshold = heroHeight - 86;
+
+      setIsOverHero(scrollY < headerThreshold);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("resize", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [isHomePage]);
+
+  const isDarkForeground = !isHomePage || !isOverHero;
 
   return (
     <header
       className={`w-full transition-all duration-300 z-50 ${
         isHomePage
-          ? isScrolled
-            ? "fixed top-0 left-0 bg-black/80 backdrop-blur-md border-b border-white/10 shadow-lg"
-            : "absolute top-0 left-0 bg-transparent border-b border-transparent"
-          : "relative bg-white border-b border-gray-100"
+          ? `fixed top-0 left-0 ${
+              isOverHero
+                ? isScrolled
+                  ? "bg-white/[0.06] backdrop-blur-md border-b border-white/[0.08] text-white shadow-xs"
+                  : "bg-transparent border-b border-transparent text-white"
+                : "bg-white/75 backdrop-blur-md border-b border-gray-200/50 text-gray-900 shadow-xs"
+            }`
+          : "sticky top-0 left-0 bg-white/80 backdrop-blur-md border-b border-gray-200/50 text-gray-900 shadow-xs"
       }`}
     >
       <nav
@@ -54,7 +78,9 @@ export default function Navbar() {
             width={220}
             height={64}
             priority
-            className="h-10 sm:h-12 md:h-[50px] w-auto object-contain"
+            className={`h-10 sm:h-12 md:h-[50px] w-auto object-contain transition-all duration-300 ${
+              isDarkForeground ? "brightness-100" : "brightness-0 invert"
+            }`}
           />
         </Link>
 
@@ -70,14 +96,14 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`transition-colors py-1.5 relative ${
-                  isHomePage
+                className={`transition-colors duration-300 py-1.5 relative ${
+                  isDarkForeground
                     ? isActive
                       ? "text-[#FF5520] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2.5px] after:bg-[#FF5520] after:rounded-full"
-                      : "text-white/80 hover:text-white"
+                      : "text-gray-800 hover:text-black"
                     : isActive
                     ? "text-[#FF5520] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2.5px] after:bg-[#FF5520] after:rounded-full"
-                    : "text-gray-700 hover:text-gray-950"
+                    : "text-white/85 hover:text-white"
                 }`}
               >
                 {link.label}
@@ -90,10 +116,10 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center">
           <Link
             href="#get-started"
-            className={`font-button inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold tracking-tight transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 ${
-              isHomePage
-                ? "bg-white hover:bg-gray-100 text-[#111111]"
-                : "bg-[#111111] hover:bg-black text-white"
+            className={`font-button inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold tracking-tight transition-all duration-300 shadow-sm hover:shadow-md active:scale-95 ${
+              isDarkForeground
+                ? "bg-[#111111] hover:bg-black text-white"
+                : "bg-white hover:bg-gray-100 text-[#111111]"
             }`}
           >
             Get Started
@@ -104,8 +130,10 @@ export default function Navbar() {
         <div className="flex lg:hidden items-center gap-3">
           <Link
             href="#get-started"
-            className={`font-button inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-semibold ${
-              isHomePage ? "bg-white text-black" : "bg-[#111111] text-white"
+            className={`font-button inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
+              isDarkForeground
+                ? "bg-[#111111] text-white"
+                : "bg-white text-black"
             }`}
           >
             Get Started
@@ -114,10 +142,10 @@ export default function Navbar() {
             type="button"
             aria-label="Toggle navigation menu"
             onClick={() => setIsMenuOpen((prev) => !prev)}
-            className={`p-2 rounded-lg border focus:outline-none transition-colors ${
-              isHomePage
-                ? "text-white border-white/20 bg-black/30 hover:bg-black/50"
-                : "text-gray-800 hover:text-black border-gray-200"
+            className={`p-2 rounded-lg border focus:outline-none transition-colors duration-300 ${
+              isDarkForeground
+                ? "text-gray-800 hover:text-black border-gray-200 bg-black/[0.04]"
+                : "text-white border-white/20 bg-white/10 hover:bg-white/20"
             }`}
           >
             {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -128,10 +156,10 @@ export default function Navbar() {
       {/* Mobile menu dropdown */}
       {isMenuOpen && (
         <div
-          className={`lg:hidden border-b px-6 sm:px-10 pt-2 pb-6 shadow-2xl transition-all duration-200 ${
-            isHomePage
-              ? "bg-black/95 backdrop-blur-xl border-white/10 text-white"
-              : "bg-white border-gray-100 text-gray-900"
+          className={`lg:hidden border-b px-6 sm:px-10 pt-2 pb-6 shadow-xl transition-all duration-300 ${
+            isDarkForeground
+              ? "bg-white/95 backdrop-blur-xl border-gray-100 text-gray-900"
+              : "bg-black/75 backdrop-blur-2xl border-white/10 text-white"
           }`}
         >
           <div className="flex flex-col space-y-3 font-body">
@@ -146,14 +174,14 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`py-2.5 px-3 rounded-lg text-base font-medium transition-colors ${
-                    isHomePage
+                  className={`py-2.5 px-3 rounded-lg text-base font-medium transition-colors duration-300 ${
+                    isDarkForeground
                       ? isActive
-                        ? "bg-[#FF5520]/20 text-[#FF5520] font-semibold"
-                        : "text-white/80 hover:bg-white/10 hover:text-white"
+                        ? "bg-orange-50 text-[#FF5520] font-semibold"
+                        : "text-gray-700 hover:bg-gray-50 hover:text-gray-950"
                       : isActive
-                      ? "bg-orange-50 text-[#FF5520] font-semibold"
-                      : "text-gray-700 hover:bg-gray-50 hover:text-gray-950"
+                      ? "bg-[#FF5520]/20 text-[#FF5520] font-semibold"
+                      : "text-white/80 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   {link.label}

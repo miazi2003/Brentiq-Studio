@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="w-full bg-white text-gray-900 min-h-screen">
+    <div className="w-full bg-white text-gray-900 min-h-screen" suppressHydrationWarning>
       {/* SECTION 1 — SERVICES HERO */}
       <ServicesHero />
 

@@ -9,7 +9,7 @@ import ContactCTA from "@/Components/HomePageSections/ContactCTA";
 
 export default function Home() {
   return (
-    <>
+    <div className="w-full" suppressHydrationWarning>
       <Banner />
       <AboutUs />
       <Services />
@@ -18,7 +18,7 @@ export default function Home() {
       <Testimonials />
       <FAQ />
       <ContactCTA />
-    </>
+    </div>
   );
 }
 

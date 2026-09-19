@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, CornerDownRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight, CornerDownRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -145,7 +145,7 @@ export default function Services() {
       ref={sectionRef}
       id="services"
       onMouseMove={handleMouseMove}
-      className="w-full px-3 sm:px-5 lg:px-6 py-4 sm:py-6"
+      className="relative z-20 w-full bg-white px-3 sm:px-5 lg:px-6 py-4 sm:py-6"
     >
       {/* Outer Card with the Signature Black & Orange Gradient */}
       <div
@@ -181,9 +181,18 @@ export default function Services() {
               </h2>
             </div>
 
-            <p className="font-body text-sm sm:text-base text-white/70 max-w-md leading-relaxed">
-              We provide full-spectrum digital design, development, and branding services engineered to create unforgettable experiences and accelerate business growth.
-            </p>
+            <div className="flex flex-col sm:items-end gap-5 max-w-md">
+              <p className="font-body text-sm sm:text-base text-white/70 leading-relaxed sm:text-right">
+                We provide full-spectrum digital design, development, and branding services engineered to create unforgettable experiences and accelerate business growth.
+              </p>
+              <Link
+                href="/services"
+                className="font-button inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white hover:bg-[#FF5520] text-[#111111] hover:text-white text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-[#FF5520]/25 group shrink-0"
+              >
+                <span>View All Services</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">

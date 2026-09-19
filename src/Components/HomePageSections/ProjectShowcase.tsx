@@ -203,11 +203,11 @@ export default function ProjectShowcase() {
       <section
         ref={sectionRef}
         id="works"
-        className="relative w-full h-screen bg-white text-black px-4 sm:px-8 lg:px-12 py-6 flex flex-col justify-between overflow-hidden isolate"
+        className="relative w-full h-screen bg-white text-black px-4 sm:px-8 lg:px-12 pt-24 sm:pt-28 pb-4 sm:pb-6 flex flex-col justify-between overflow-hidden isolate"
       >
         {/* Top Header: "Projects" + "Our Works" badge with glowing orange dot */}
-        <div className="projects-header w-full max-w-[1440px] mx-auto flex items-center justify-between pt-2 pb-4 border-b border-gray-100 shrink-0">
-          <h2 className="font-heading text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-black leading-none">
+        <div className="projects-header w-full max-w-[1440px] mx-auto flex items-center justify-between pb-3 sm:pb-4 border-b border-gray-100 shrink-0">
+          <h2 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-none">
             Projects
           </h2>
 

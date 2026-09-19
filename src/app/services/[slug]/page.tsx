@@ -70,7 +70,7 @@ export default async function IndividualServicePage({ params }: Props) {
   const secondWord = words.slice(1).join(" ") || "";
 
   return (
-    <div className="w-full bg-white text-gray-950 min-h-screen">
+    <div className="w-full bg-white text-gray-950 min-h-screen" suppressHydrationWarning>
       {/* ========================================================================= */}
       {/* 1. EDITORIAL HERO SECTION (MATCHING THE REFERENCE IMAGE)                  */}
       {/* ========================================================================= */}
