@@ -37,7 +37,7 @@ export default function Banner() {
           badgeRef.current,
           { opacity: 0, y: -25, scale: 0.95 },
           { opacity: 1, y: 0, scale: 1, duration: 0.8 },
-          0
+          0.1
         );
       }
 
@@ -46,7 +46,7 @@ export default function Banner() {
           topTextRef.current,
           { opacity: 0, y: -20 },
           { opacity: 1, y: 0, duration: 0.8 },
-          0.1
+          0.2
         );
       }
 
@@ -56,7 +56,7 @@ export default function Banner() {
           taglineRef.current,
           { opacity: 0, y: 35 },
           { opacity: 1, y: 0, duration: 0.9 },
-          0.2
+          0.3
         );
       }
 
@@ -65,11 +65,11 @@ export default function Banner() {
           headingRef.current,
           { opacity: 0, y: 60, scale: 0.95 },
           { opacity: 1, y: 0, scale: 1, duration: 1.1, ease: "power4.out" },
-          0.3
+          0.4
         );
       }
 
-      // 3. Dropdown Menu Unfolding Animation from under the Get Started button
+      // 3. Dropdown Menu Unfolding Animation
       if (dropdownCardRef.current) {
         tl.fromTo(
           dropdownCardRef.current,
@@ -86,7 +86,7 @@ export default function Banner() {
             duration: 0.85,
             ease: "power3.out",
           },
-          0.4
+          0.5
         );
 
         // Stagger inner service rows as the dropdown opens
@@ -102,7 +102,7 @@ export default function Banner() {
               stagger: 0.08,
               ease: "power2.out",
             },
-            0.55
+            0.65
           );
         }
       }
@@ -114,47 +114,56 @@ export default function Banner() {
   }, []);
 
   return (
-    <section ref={containerRef} className="w-full px-3 sm:px-5 lg:px-6 pb-4 sm:pb-6">
-      {/* Main Full-Screen Video Hero Card */}
-      <div className="relative w-full h-[calc(100dvh-92px)] min-h-[660px] rounded-[24px] sm:rounded-[36px] overflow-hidden shadow-2xl flex flex-col justify-between p-6 sm:p-10 lg:p-12 text-white isolate bg-black">
+    <section
+      ref={containerRef}
+      className="relative w-full min-h-screen lg:h-screen min-h-[680px] bg-black text-white overflow-hidden flex flex-col justify-between isolate select-none"
+    >
+      {/* 1. Background Video (Spans 100% of viewport edge-to-edge) */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover -z-20 pointer-events-none"
+      >
+        <source
+          src="https://res.cloudinary.com/i1hmtat5/video/upload/vecteezy_abstract-orange-black-fluid-gradient-background-animation_76744182_iayqb2.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* 2. Video Contrast & Dark Vignette Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/80 -z-10 pointer-events-none" />
+
+      {/* 3. Subtle Atmospheric Orange Radial Glow */}
+      <div
+        className="absolute inset-0 bg-[radial-gradient(circle_at_75%_45%,rgba(255,85,32,0.18)_0%,transparent_60%)] -z-10 pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* 4. Full-Width Aligned Content Container (Matches other sections width & padding) */}
+      <div className="w-full px-6 sm:px-10 lg:px-16 flex flex-col justify-between h-full flex-1 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 lg:pb-14 z-10">
         
-        {/* Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover -z-20 pointer-events-none"
-        >
-          <source
-            src="https://res.cloudinary.com/i1hmtat5/video/upload/vecteezy_abstract-orange-black-fluid-gradient-background-animation_76744182_iayqb2.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
-
-        {/* Video Color Overlay for contrast and optimal text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 -z-10 pointer-events-none" />
-
-        {/* TOP ROW: Available Status Indicator & Right Service Info (Plus Jakarta Sans) */}
-        <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 z-10 font-body">
+        {/* TOP ROW: Available Status Indicator & Right Service Info */}
+        <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-body">
           {/* Top Left: Available indicator */}
           <div
             ref={badgeRef}
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/25 backdrop-blur-md border border-white/15 shadow-sm will-change-transform"
+            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/15 shadow-sm will-change-transform"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_10px_#10b981]" />
             </span>
-            <span className="text-xs sm:text-sm font-medium tracking-wide text-white/95">
+            <span className="text-xs sm:text-sm font-medium tracking-wide text-white/95 font-body">
               Available For This Projects
             </span>
           </div>
 
           {/* Top Right: Tagline / Services description */}
           <div ref={topTextRef} className="text-left sm:text-right max-w-[360px] will-change-transform">
-            <p className="text-xs sm:text-sm font-normal text-white/85 leading-relaxed tracking-wide">
+            <p className="text-xs sm:text-sm font-normal text-white/80 leading-relaxed tracking-wide font-body">
               We Provide UI/UX Design And <br className="hidden sm:inline" />
               Development Services As Well As <br className="hidden sm:inline" />
               Branding Services
@@ -163,9 +172,9 @@ export default function Banner() {
         </div>
 
         {/* BOTTOM ROW: Giant Brentiq Branding & Interactive Action Box */}
-        <div className="w-full flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 pt-10 z-10">
-          {/* Bottom Left: Tagline (Plus Jakarta Sans) & Giant Brand Typography (Stack Sans Notch) */}
-          <div className="max-w-2xl">
+        <div className="w-full flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 pt-8 sm:pt-12 z-10">
+          {/* Bottom Left: Tagline & Giant Brand Typography */}
+          <div className="max-w-2xl lg:max-w-3xl">
             <p
               ref={taglineRef}
               className="font-body text-sm sm:text-base lg:text-lg font-normal text-white/90 mb-2 sm:mb-3 will-change-transform"
@@ -176,15 +185,14 @@ export default function Banner() {
             </p>
             <h1
               ref={headingRef}
-              className="font-heading text-6xl sm:text-8xl md:text-9xl lg:text-[128px] font-black tracking-tighter text-white leading-none select-none will-change-transform"
+              className="font-heading text-6xl sm:text-8xl md:text-9xl lg:text-[130px] xl:text-[150px] font-black tracking-tighter text-white leading-none select-none will-change-transform"
             >
               Brentiq
             </h1>
           </div>
 
-          {/* Bottom Right: Get Started Button (Solid Orange Pill) & Services Pill Menu */}
+          {/* Bottom Right: Get Started Button & Services Pill Menu */}
           <div className="w-full sm:w-[280px] md:w-[310px] flex flex-col gap-3 shrink-0">
-            {/* Vibrant Orange Primary Action Button */}
             <Link
               href="#get-started"
               className="font-button w-full py-3.5 px-6 rounded-full bg-[#FF5520] hover:bg-[#ff4410] text-white text-center font-semibold text-sm tracking-wide transition-all duration-200 shadow-lg shadow-[#FF5520]/25 hover:shadow-xl hover:shadow-[#FF5520]/40 active:scale-[0.98]"
@@ -192,10 +200,9 @@ export default function Banner() {
               Get Started
             </Link>
 
-            {/* Service Navigation List Card with Dropdown Unfolding Motion */}
             <div
               ref={dropdownCardRef}
-              className="bg-white rounded-2xl p-1.5 sm:p-2 shadow-2xl flex flex-col divide-y divide-gray-100 text-gray-900 border border-white/80 font-body origin-top will-change-transform"
+              className="bg-white/95 backdrop-blur-md rounded-2xl p-1.5 sm:p-2 shadow-2xl flex flex-col divide-y divide-gray-100 text-gray-900 border border-white/80 font-body origin-top will-change-transform"
             >
               {SERVICES_LIST.map((service, idx) => (
                 <Link
