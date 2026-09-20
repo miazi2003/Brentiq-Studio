@@ -205,21 +205,31 @@ export default function ProjectShowcase() {
         id="works"
         className="relative w-full h-screen bg-white text-black px-4 sm:px-8 lg:px-12 pt-24 sm:pt-28 pb-4 sm:pb-6 flex flex-col justify-between overflow-hidden isolate"
       >
-        {/* Top Header: "Projects" + "Our Works" badge with glowing orange dot */}
+        {/* Top Header: "Projects" + "Our Works" badge & View All link */}
         <div className="projects-header w-full max-w-[1440px] mx-auto flex items-center justify-between pb-3 sm:pb-4 border-b border-gray-100 shrink-0">
-          <h2 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-none">
-            Projects
-          </h2>
+          <div className="flex items-center gap-4 sm:gap-6">
+            <h2 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-none">
+              Projects
+            </h2>
 
-          <div className="inline-flex items-center gap-2.5">
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520] shadow-[0_0_8px_#FF5520]" />
-            </span>
-            <span className="text-xs sm:text-sm font-semibold tracking-wide text-gray-900 font-body">
-              Our Works
-            </span>
+            <div className="hidden sm:inline-flex items-center gap-2.5">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520] shadow-[0_0_8px_#FF5520]" />
+              </span>
+              <span className="text-xs sm:text-sm font-semibold tracking-wide text-gray-900 font-body">
+                Our Works
+              </span>
+            </div>
           </div>
+
+          <Link
+            href="/works"
+            className="font-button inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gray-100 hover:bg-[#FF5520] text-gray-900 hover:text-white text-xs sm:text-sm font-semibold transition-all duration-300 shadow-2xs group"
+          >
+            <span>View All Works</span>
+            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          </Link>
         </div>
 
         {/* Center Stage: Wide Pinned Project Cards Container */}
