@@ -1,67 +1,73 @@
 "use client";
 
 import React from "react";
-import { ArrowDown, FileText } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Calendar, FileText } from "lucide-react";
 
 export default function CareerHero() {
   return (
-    <section className="w-full bg-white text-gray-950 pt-14 sm:pt-20 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-10 overflow-hidden relative isolate">
-      {/* Ambient background glows */}
+    <section className="w-full min-h-[calc(100dvh-86px)] flex flex-col justify-center bg-white text-gray-950 pt-8 sm:pt-12 pb-12 sm:pb-16 px-6 sm:px-10 lg:px-16 overflow-hidden relative isolate border-b border-gray-100">
+      {/* Subtle Ambient Background Glows */}
       <div
-        className="absolute top-0 right-1/4 w-[500px] h-[350px] bg-[#FF5520]/[0.06] rounded-full blur-[120px] -z-10 pointer-events-none"
+        className="absolute top-0 right-1/4 w-[500px] h-[350px] bg-[#FF5520]/[0.05] rounded-full blur-[120px] -z-10 pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-0 left-10 w-[420px] h-[300px] bg-orange-100/40 rounded-full blur-[100px] -z-10 pointer-events-none"
+        className="absolute bottom-0 left-10 w-[420px] h-[300px] bg-orange-50/50 rounded-full blur-[100px] -z-10 pointer-events-none"
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto flex flex-col gap-8 sm:gap-10">
-        {/* Top Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-orange-50 border border-orange-200/60 w-fit">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520]" />
-          </span>
-          <span className="text-xs font-semibold text-[#FF5520] uppercase tracking-widest font-heading">
-            Careers &amp; Talent Collective
+      <div className="max-w-7xl w-full mx-auto flex flex-col justify-center gap-8 sm:gap-12 lg:gap-14">
+        {/* Top Eyebrow */}
+        <div>
+          <span className="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-[0.18em] text-gray-500 font-heading block">
+            Globally build a strong digital presence that people love
           </span>
         </div>
 
-        {/* Editorial Headline & Narrative Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end">
-          <div className="lg:col-span-8">
-            <h1 className="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[92px] font-bold tracking-tight text-gray-950 leading-[0.98] select-none">
-              Craft the <br />
-              <span className="text-gray-300 font-light">— </span>
-              <span className="font-serif italic font-normal text-gray-950 font-serif-emphasis">
-                Future
-              </span>{" "}
-              of Digital <br />
-              <span className="text-[#FF5520]">Experiences.</span>
+        {/* Main Headline & Signature Orange Arrow */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-16">
+          {/* Display Heading */}
+          <div className="flex items-start sm:items-end justify-between gap-6 sm:gap-10 w-full lg:w-auto">
+            <h1 className="font-heading text-6xl sm:text-8xl md:text-9xl lg:text-[110px] xl:text-[130px] font-bold tracking-tight text-gray-950 leading-[0.93] select-none">
+              We are <br />
+              <span className="text-gray-950">Brentiq.</span>
             </h1>
+
+            {/* Signature Orange Arrow Icon */}
+            <a
+              href="#talent-form"
+              aria-label="Jump to Application Form"
+              className="shrink-0 text-[#FF5520] hover:text-[#ff4410] transition-all duration-300 hover:scale-110 active:scale-95 group mb-2 sm:mb-4 cursor-pointer"
+            >
+              <ArrowUpRight className="w-14 h-14 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 xl:w-36 xl:h-36 stroke-[2.5] transition-transform duration-300 group-hover:translate-x-2 group-hover:-translate-y-2" />
+            </a>
           </div>
 
-          <div className="lg:col-span-4 flex flex-col justify-end gap-6 pb-2">
-            <p className="font-body text-base sm:text-lg text-gray-600 font-normal leading-relaxed">
-              We partner with visionary founders and global enterprises. We are always on the lookout for world-class engineers, designers, and creative thinkers who obsess over detail and 60fps craft.
+          {/* Right Column: Supporting Description & Action Buttons */}
+          <div className="lg:max-w-lg flex flex-col gap-6 lg:pb-2">
+            <p className="font-body text-base sm:text-lg md:text-xl text-gray-600 font-normal leading-relaxed">
+              We partner with ambitious founders and global enterprises to craft category-defining digital products. We are always scouting extraordinary designers, engineers, and creative minds.
             </p>
 
             <div className="flex flex-wrap items-center gap-3.5">
+              {/* Schedule a Call Button */}
+              <Link
+                href="/#contact"
+                className="font-button inline-flex items-center gap-2.5 px-7 sm:px-8 py-4 sm:py-4.5 rounded-full bg-[#FF5520] hover:bg-[#ff4410] text-white text-base font-semibold tracking-wide transition-all duration-300 shadow-xl shadow-[#FF5520]/25 hover:shadow-2xl hover:shadow-[#FF5520]/40 hover:scale-105 active:scale-95 group"
+              >
+                <Calendar className="w-4 h-4" />
+                <span>Schedule a Call</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+
+              {/* Submit Portfolio / CV Button */}
               <a
                 href="#talent-form"
-                className="font-button inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#FF5520] hover:bg-[#ff4410] text-white text-sm font-semibold tracking-wide transition-all duration-200 shadow-lg shadow-[#FF5520]/25 hover:shadow-xl hover:shadow-[#FF5520]/40 group"
+                className="font-button inline-flex items-center gap-2 px-6 sm:px-7 py-4 sm:py-4.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-900 text-base font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
               >
+                <FileText className="w-4 h-4 text-gray-700" />
                 <span>Submit Portfolio / CV</span>
-                <FileText className="w-4 h-4 group-hover:scale-110 transition-transform" />
-              </a>
-
-              <a
-                href="#why-brentiq"
-                className="font-button inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-900 text-sm font-semibold transition-colors"
-              >
-                <span>Studio Culture</span>
-                <ArrowDown className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -70,4 +76,3 @@ export default function CareerHero() {
     </section>
   );
 }
-

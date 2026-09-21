@@ -98,20 +98,14 @@ export default function Footer() {
       {/* Main Footer Card with Background Hero Video */}
       <div className="relative w-full rounded-[24px] sm:rounded-[36px] overflow-hidden bg-black/50 backdrop-blur-sm text-white p-8 sm:p-12 lg:p-16 xl:p-20 border border-white/15 shadow-2xl isolate">
         
-        {/* Background Video from Hero */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover -z-20 pointer-events-none opacity-80 sm:opacity-90"
-        >
-          <source
-            src="https://res.cloudinary.com/i1hmtat5/video/upload/vecteezy_abstract-orange-black-fluid-gradient-background-animation_76744182_iayqb2.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
+        {/* Background Image */}
+        <Image
+          src="https://res.cloudinary.com/i1hmtat5/image/upload/v1790013036/ChatGPT_Image_Sep_21_2026_11_50_09_PM_xnl69a.png"
+          alt="Brentiq Studio Footer Background Visual"
+          fill
+          sizes="(max-width: 1200px) 100vw, 1200px"
+          className="absolute inset-0 w-full h-full object-cover object-center -z-20 pointer-events-none opacity-80 sm:opacity-90"
+        />
 
         {/* Video Color Overlay for crisp text contrast while keeping video vivid */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70 -z-10 pointer-events-none" />

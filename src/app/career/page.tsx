@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import CareerHero from "@/Components/CareerPage/CareerHero";
+import AboutUs from "@/Components/HomePageSections/AboutUs";
 import StudioCultureSection from "@/Components/CareerPage/StudioCultureSection";
-import TalentScoutSection from "@/Components/CareerPage/TalentScoutSection";
+import CurrentOpeningsSection from "@/Components/CareerPage/CurrentOpeningsSection";
 import OpenApplicationForm from "@/Components/CareerPage/OpenApplicationForm";
 
 export const metadata: Metadata = {
@@ -16,13 +17,17 @@ export default function CareerPage() {
       {/* 1. EDITORIAL HERO */}
       <CareerHero />
 
-      {/* 2. WHY BRENTIQ / STUDIO CULTURE & PERKS */}
+      {/* 2. ABOUT US (HOMEPAGE PINNED SCENE) */}
+      <AboutUs />
+
+      {/* 3. STUDIO CULTURE & VALUES */}
       <StudioCultureSection />
 
-      {/* 3. TALENT SCOUTING PHILOSOPHY & DISCIPLINES */}
-      <TalentScoutSection />
-
       {/* 4. OPEN SPECULATIVE APPLICATION FORM (HERO CTA CONTAINER) */}
+      {/* 4. CURRENT OPENINGS LISTINGS */}
+      <CurrentOpeningsSection />
+
+      {/* 5. OPEN SPECULATIVE APPLICATION FORM (HERO CTA CONTAINER) */}
       <OpenApplicationForm />
     </div>
   );
