@@ -186,29 +186,29 @@ export default function AboutUs() {
       <section
         ref={sectionRef}
         id="about"
-        className="sticky top-0 z-10 w-full h-screen px-3 sm:px-5 lg:px-6 pt-24 sm:pt-28 pb-4 sm:pb-6 flex items-center justify-center overflow-hidden bg-white"
+        className="sticky top-0 z-10 w-full h-screen px-3 sm:px-5 lg:px-6 pt-20 sm:pt-28 pb-3 sm:pb-6 flex items-center justify-center overflow-hidden bg-white"
       >
         {/* Outer Rounded Section Card */}
         <div
           ref={containerRef}
-          className="relative w-full h-full rounded-[24px] sm:rounded-[36px] bg-[#fafafa] border border-gray-200/70 p-6 sm:p-10 lg:p-14 flex flex-col justify-between overflow-hidden shadow-sm isolate will-change-transform"
+          className="relative w-full h-full rounded-[24px] sm:rounded-[36px] bg-[#fafafa] border border-gray-200/70 p-4 sm:p-8 lg:p-14 flex flex-col justify-between overflow-hidden shadow-sm isolate will-change-transform"
         >
           {/* TOP ROW: About Us badge & Progressive Animated Copy */}
-          <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 sm:gap-12">
+          <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-8 lg:gap-12">
             {/* Left: About Us with Glowing Red/Orange Dot */}
             <div className="inline-flex items-center gap-2.5 pt-1 shrink-0">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520] shadow-[0_0_8px_#FF5520]" />
               </span>
-              <span className="text-sm sm:text-base font-semibold text-gray-900 font-body tracking-tight">
+              <span className="text-xs sm:text-base font-semibold text-gray-900 font-body tracking-tight">
                 About Us
               </span>
             </div>
 
             {/* Right: Progressive Word Color Shift */}
             <div className="max-w-3xl xl:max-w-4xl">
-              <p className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-semibold leading-[1.24] tracking-tight">
+              <p className="font-heading text-lg sm:text-2xl md:text-3xl lg:text-[38px] font-semibold leading-[1.24] tracking-tight">
                 {words.map((word, i) => (
                   <span
                     key={i}
@@ -223,21 +223,21 @@ export default function AboutUs() {
               </p>
 
               {/* About Us Button */}
-              <div className="mt-6 sm:mt-8">
+              <div className="mt-3 sm:mt-6">
                 <Link
                   href="/about"
-                  className="font-button inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-sm sm:text-base font-semibold tracking-wide transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-[#FF5520]/25 group"
+                  className="font-button inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-xs sm:text-sm md:text-base font-semibold tracking-wide transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-[#FF5520]/25 group"
                 >
                   <span>About Us</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </div>
             </div>
           </div>
 
           {/* BOTTOM ROW: Centered 3/4 Width Statistic Cards */}
-          <div className="w-full flex justify-center pt-8 overflow-hidden">
-            <div className="w-full max-w-[92%] lg:max-w-[78%] xl:max-w-[74%] grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7">
+          <div className="w-full flex justify-center pt-3 sm:pt-6 overflow-hidden">
+            <div className="w-full max-w-full sm:max-w-[92%] lg:max-w-[78%] xl:max-w-[74%] grid grid-cols-1 md:grid-cols-3 gap-2.5 sm:gap-4 md:gap-5 lg:gap-7">
               {STATS_DATA.map((stat, index) => {
                 const isLabelTop = stat.layout === "label-top-num-bottom";
 
@@ -247,7 +247,7 @@ export default function AboutUs() {
                     ref={(el) => {
                       cardRefs.current[index] = el;
                     }}
-                    className="relative h-[220px] sm:h-[260px] lg:h-[300px] w-full rounded-[22px] sm:rounded-[28px] border bg-white p-6 sm:p-8 flex flex-col justify-between shadow-sm will-change-transform overflow-hidden isolate"
+                    className="relative h-[74px] sm:h-[96px] md:h-[260px] lg:h-[300px] w-full rounded-[16px] sm:rounded-[20px] md:rounded-[28px] border bg-white px-4 py-2.5 sm:px-6 sm:py-4 md:p-8 flex flex-row md:flex-col justify-between items-center md:items-stretch shadow-xs will-change-transform overflow-hidden isolate"
                     style={{
                       backgroundColor: "#ffffff",
                     }}
@@ -257,7 +257,7 @@ export default function AboutUs() {
                       ref={(el) => {
                         gradientOverlayRefs.current[index] = el;
                       }}
-                      className="absolute inset-0 pointer-events-none -z-10 rounded-[22px] sm:rounded-[28px] opacity-0 will-change-opacity"
+                      className="absolute inset-0 pointer-events-none -z-10 rounded-[16px] sm:rounded-[20px] md:rounded-[28px] opacity-0 will-change-opacity"
                       style={{
                         background:
                           "linear-gradient(135deg, #111111 0%, #1c0e08 45%, #FF5520 100%)",
@@ -266,25 +266,25 @@ export default function AboutUs() {
 
                     {isLabelTop ? (
                       <>
-                        <div className="w-full flex justify-start z-10">
-                          <span className="text-xs sm:text-sm font-medium font-body opacity-85 tracking-tight">
+                        <div className="w-auto md:w-full flex justify-start z-10 order-2 md:order-1">
+                          <span className="text-xs sm:text-sm font-medium font-body opacity-85 tracking-tight text-right md:text-left">
                             {stat.label}
                           </span>
                         </div>
-                        <div className="w-full flex justify-end z-10">
-                          <span className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-none">
+                        <div className="w-auto md:w-full flex justify-end z-10 order-1 md:order-2">
+                          <span className="font-heading text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-none">
                             {stat.number}
                           </span>
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className="w-full flex justify-start z-10">
-                          <span className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-none">
+                        <div className="w-auto md:w-full flex justify-start z-10">
+                          <span className="font-heading text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-none">
                             {stat.number}
                           </span>
                         </div>
-                        <div className="w-full flex justify-end z-10">
+                        <div className="w-auto md:w-full flex justify-end z-10">
                           <span className="text-xs sm:text-sm font-medium font-body opacity-85 text-right tracking-tight">
                             {stat.label}
                           </span>

@@ -14,7 +14,6 @@ const SERVICES_LIST = [
 
 export default function Banner() {
   const containerRef = useRef<HTMLElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
   const topTextRef = useRef<HTMLDivElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -31,22 +30,13 @@ export default function Banner() {
         delay: 0.1,
       });
 
-      // 1. Top row reveals
-      if (badgeRef.current) {
-        tl.fromTo(
-          badgeRef.current,
-          { opacity: 0, y: -25, scale: 0.95 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.8 },
-          0.1
-        );
-      }
-
+      // 1. Top row reveal
       if (topTextRef.current) {
         tl.fromTo(
           topTextRef.current,
           { opacity: 0, y: -20 },
           { opacity: 1, y: 0, duration: 0.8 },
-          0.2
+          0.1
         );
       }
 
@@ -146,22 +136,8 @@ export default function Banner() {
       {/* 4. Full-Width Aligned Content Container (Matches other sections width & padding) */}
       <div className="w-full px-6 sm:px-10 lg:px-16 flex flex-col justify-between h-full flex-1 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 lg:pb-14 z-10">
         
-        {/* TOP ROW: Available Status Indicator & Right Service Info */}
-        <div className="w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-body">
-          {/* Top Left: Available indicator */}
-          <div
-            ref={badgeRef}
-            className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/15 shadow-sm will-change-transform"
-          >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500 shadow-[0_0_10px_#10b981]" />
-            </span>
-            <span className="text-xs sm:text-sm font-medium tracking-wide text-white/95 font-body">
-              Available For This Projects
-            </span>
-          </div>
-
+        {/* TOP ROW: Right Service Info */}
+        <div className="w-full flex items-center justify-end font-body">
           {/* Top Right: Tagline / Services description */}
           <div ref={topTextRef} className="text-left sm:text-right max-w-[360px] will-change-transform">
             <p className="text-xs sm:text-sm font-normal text-white/80 leading-relaxed tracking-wide font-body">
