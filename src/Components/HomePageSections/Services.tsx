@@ -227,7 +227,7 @@ export default function Services() {
 
                     {/* Bulletproof Vertical Rolling Text Wrapper */}
                     <div className="relative overflow-hidden h-[1.3em] flex items-center">
-                      <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2 mt-[55px]">
+                      <div className="flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-1/2 md:mt-[55px] mt-[35px]">
                         {/* Primary Text Line (Visible at rest) */}
                         <span
                           className={`h-[1.3em] flex items-center whitespace-nowrap transition-colors duration-300 ${
