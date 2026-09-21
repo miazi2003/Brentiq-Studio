@@ -8,7 +8,6 @@ const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Selected Works", href: "/#works" },
   { label: "Selected Works", href: "/works" },
   { label: "How We Work", href: "/#process" },
   { label: "FAQs", href: "/#questions" },
@@ -186,19 +185,19 @@ export default function Footer() {
           {/* ======================================================== */}
           {/* RIGHT COLUMNS: Navigation Links                          */}
           {/* ======================================================== */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-12 font-body">
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 font-body">
             
             {/* Column 1: Main Navigation */}
-            <div className="space-y-5">
+            <div className="space-y-4 sm:space-y-5">
               <h3 className="font-heading text-lg sm:text-xl font-bold text-white tracking-tight">
                 Navigation
               </h3>
-              <ul className="space-y-3.5 text-base sm:text-lg font-medium text-white/75">
+              <ul className="space-y-3 sm:space-y-3.5 text-base sm:text-lg font-medium text-white/75">
                 {NAV_LINKS.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="hover:text-[#FF5520] transition-colors inline-flex items-center gap-2 group py-1"
+                      className="hover:text-[#FF5520] transition-colors inline-flex items-center gap-2 group py-0.5"
                     >
                       <span className="w-2 h-2 rounded-full bg-white/25 group-hover:bg-[#FF5520] group-hover:shadow-[0_0_8px_#FF5520] transition-all" />
                       <span>{link.label}</span>
@@ -209,16 +208,16 @@ export default function Footer() {
             </div>
 
             {/* Column 2: Services */}
-            <div className="space-y-5">
+            <div className="space-y-4 sm:space-y-5">
               <h3 className="font-heading text-lg sm:text-xl font-bold text-white tracking-tight">
                 Services
               </h3>
-              <ul className="space-y-3.5 text-base sm:text-lg font-medium text-white/75">
+              <ul className="space-y-3 sm:space-y-3.5 text-base sm:text-lg font-medium text-white/75">
                 {SERVICE_LINKS.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="hover:text-[#FF5520] transition-colors inline-flex items-center gap-2 group py-1"
+                      className="hover:text-[#FF5520] transition-colors inline-flex items-center gap-2 group py-0.5"
                     >
                       <span className="w-2 h-2 rounded-full bg-white/25 group-hover:bg-[#FF5520] group-hover:shadow-[0_0_8px_#FF5520] transition-all" />
                       <span>{link.label}</span>
@@ -229,16 +228,16 @@ export default function Footer() {
             </div>
 
             {/* Column 3: Technologies & CMS */}
-            <div className="col-span-2 sm:col-span-1 space-y-5">
+            <div className="space-y-4 sm:space-y-5">
               <h3 className="font-heading text-lg sm:text-xl font-bold text-white tracking-tight">
                 Platforms
               </h3>
-              <ul className="space-y-3.5 text-base sm:text-lg font-medium text-white/75">
+              <ul className="space-y-3 sm:space-y-3.5 text-base sm:text-lg font-medium text-white/75">
                 {TECH_LINKS.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="hover:text-[#FF5520] transition-colors inline-flex items-center gap-2 group py-1"
+                      className="hover:text-[#FF5520] transition-colors inline-flex items-center gap-2 group py-0.5"
                     >
                       <span className="w-2 h-2 rounded-full bg-white/25 group-hover:bg-[#FF5520] group-hover:shadow-[0_0_8px_#FF5520] transition-all" />
                       <span>{link.label}</span>
