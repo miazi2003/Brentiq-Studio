@@ -100,6 +100,11 @@ src/app/
 ├── works/                    # Curated Portfolio & Works Directory
 │   └── page.tsx              # Interactive filterable grid & hero
 └── projects/                 # Route alias for /works
+├── projects/                 # Route alias for /works
+│   └── page.tsx
+├── career/                   # Careers & Talent Collective Page
+│   └── page.tsx
+└── careers/                  # Route alias for /career
     └── page.tsx
 ```
 

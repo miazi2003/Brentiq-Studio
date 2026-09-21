@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: "/#works", label: "Works" },
   { href: "/#process", label: "Process" },
   { href: "/#questions", label: "Questions" },
+  { href: "/career", label: "Career" },
   { href: "/#contact", label: "Contact" },
 ];
 
