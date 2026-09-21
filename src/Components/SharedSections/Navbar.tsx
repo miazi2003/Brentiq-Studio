@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/#home", label: "Home" },
@@ -128,70 +128,97 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu trigger */}
-        <div className="flex lg:hidden items-center gap-3">
-          <Link
-            href="#get-started"
-            className={`font-button inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
-              isDarkForeground
-                ? "bg-[#111111] text-white"
-                : "bg-white text-black"
-            }`}
-          >
-            Get Started
-          </Link>
+        <div className="flex lg:hidden items-center">
           <button
             type="button"
             aria-label="Toggle navigation menu"
             onClick={() => setIsMenuOpen((prev) => !prev)}
-            className={`p-2 rounded-lg border focus:outline-none transition-colors duration-300 ${
+            className={`p-2.5 rounded-xl border focus:outline-none transition-all duration-300 active:scale-95 cursor-pointer ${
               isDarkForeground
                 ? "text-gray-800 hover:text-black border-gray-200 bg-black/[0.04]"
                 : "text-white border-white/20 bg-white/10 hover:bg-white/20"
             }`}
           >
-            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <div className="relative w-5 h-5 flex items-center justify-center">
+              <Menu
+                className={`w-5 h-5 absolute inset-0 transition-all duration-300 ${
+                  isMenuOpen ? "rotate-90 opacity-0 scale-75" : "rotate-0 opacity-100 scale-100"
+                }`}
+              />
+              <X
+                className={`w-5 h-5 absolute inset-0 transition-all duration-300 ${
+                  isMenuOpen ? "rotate-0 opacity-100 scale-100" : "-rotate-90 opacity-0 scale-75"
+                }`}
+              />
+            </div>
           </button>
         </div>
       </nav>
 
-      {/* Mobile menu dropdown */}
-      {isMenuOpen && (
-        <div
-          className={`lg:hidden border-b px-6 sm:px-10 pt-2 pb-6 shadow-xl transition-all duration-300 ${
-            isDarkForeground
-              ? "bg-white/95 backdrop-blur-xl border-gray-100 text-gray-900"
-              : "bg-black/75 backdrop-blur-2xl border-white/10 text-white"
-          }`}
-        >
-          <div className="flex flex-col space-y-3 font-body">
-            {NAV_LINKS.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(link.href) && link.href !== "/";
+      {/* Mobile menu dropdown with silky smooth CSS transitions */}
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] border-b ${
+          isMenuOpen
+            ? "max-h-[600px] opacity-100 shadow-2xl py-4"
+            : "max-h-0 opacity-0 pointer-events-none py-0 border-transparent"
+        } ${
+          isDarkForeground
+            ? "bg-white/95 backdrop-blur-xl border-gray-100 text-gray-900"
+            : "bg-black/90 backdrop-blur-2xl border-white/10 text-white"
+        }`}
+      >
+        <div className="px-6 sm:px-10 flex flex-col space-y-1 font-body">
+          {NAV_LINKS.map((link, idx) => {
+            const isActive =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href) && link.href !== "/";
 
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`py-2.5 px-3 rounded-lg text-base font-medium transition-colors duration-300 ${
-                    isDarkForeground
-                      ? isActive
-                        ? "bg-orange-50 text-[#FF5520] font-semibold"
-                        : "text-gray-700 hover:bg-gray-50 hover:text-gray-950"
-                      : isActive
-                      ? "bg-[#FF5520]/20 text-[#FF5520] font-semibold"
-                      : "text-white/80 hover:bg-white/10 hover:text-white"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  transitionDelay: isMenuOpen ? `${idx * 25}ms` : "0ms",
+                }}
+                className={`py-2 px-3.5 rounded-xl text-base font-medium transition-all duration-300 transform ${
+                  isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                } ${
+                  isDarkForeground
+                    ? isActive
+                      ? "bg-orange-50 text-[#FF5520] font-semibold"
+                      : "text-gray-700 hover:bg-gray-50 hover:text-gray-950 active:bg-gray-100"
+                    : isActive
+                    ? "bg-[#FF5520]/20 text-[#FF5520] font-semibold"
+                    : "text-white/80 hover:bg-white/10 hover:text-white active:bg-white/15"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+
+          {/* Mobile Get Started CTA Button */}
+          <div
+            style={{
+              transitionDelay: isMenuOpen ? `${NAV_LINKS.length * 25}ms` : "0ms",
+            }}
+            className={`pt-3 pb-1 transition-all duration-300 transform ${
+              isMenuOpen ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
+            }`}
+          >
+            <Link
+              href="/#contact"
+              onClick={() => setIsMenuOpen(false)}
+              className="w-full font-button inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#FF5520] hover:bg-[#e04515] text-white text-sm font-semibold tracking-wide shadow-md hover:shadow-lg hover:shadow-[#FF5520]/25 transition-all duration-300 active:scale-98 group"
+            >
+              <span>Get Started</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+            </Link>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }
