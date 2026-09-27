@@ -18,16 +18,28 @@ interface ServiceItem {
 
 const SERVICES_DATA: ServiceItem[] = [
   {
-    id: "branding",
-    title: "Branding & Identity",
+    id: "development",
+    title: "Web Development",
     description:
-      "We design logos, identity systems, and brand guidelines that don't chase trends—they're built to last. Every element is crafted to reflect your brand's true essence across all platforms.",
-    tags: ["Visual Identity", "Logo Systems", "Brand Guidelines"],
+      "Our premier specialty. High-performance frontend architecture, custom interactive animations, and robust full-stack engineering built with clean TypeScript, lightning speeds, and 60fps fluidity.",
+    tags: ["Next.js & React", "TypeScript & GSAP", "Full-Stack Platforms"],
     images: [
-      "https://images.unsplash.com/photo-1634942537034-2531766767d1?q=80&w=900&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1547949003-9792a18a2601?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=900&auto=format&fit=crop",
     ],
-    link: "#contact",
+    link: "/services/web-development",
+  },
+  {
+    id: "app-development",
+    title: "Mobile App Development",
+    description:
+      "Bespoke iOS and Android mobile applications crafted from initial design to App Store launch. Engineered with React Native and Flutter for 120Hz native performance, offline sync, and real-time cloud data.",
+    tags: ["iOS & Android", "React Native & Flutter", "Real-Time Sync"],
+    images: [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=900&auto=format&fit=crop",
+    ],
+    link: "/services/app-development",
   },
   {
     id: "uiux",
@@ -39,31 +51,31 @@ const SERVICES_DATA: ServiceItem[] = [
       "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=900&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=900&auto=format&fit=crop",
     ],
-    link: "#contact",
+    link: "/services/ui-ux",
   },
   {
-    id: "creative",
-    title: "Creative Direction",
+    id: "motion",
+    title: "Motion & Video",
     description:
-      "From bespoke digital campaigns to editorial art direction, we curate compelling visual stories that elevate brand authority and make your presence unforgettable.",
-    tags: ["Art Direction", "3D Visuals", "Content Strategy"],
+      "From bespoke digital video campaigns to 3D product CGI and kinetic typography, we curate compelling visual stories that elevate brand authority and make your presence unforgettable.",
+    tags: ["3D CGI Animation", "Kinetic Typography", "Commercial Video"],
     images: [
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=900&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1634942537034-2531766767d1?q=80&w=900&auto=format&fit=crop",
     ],
-    link: "#contact",
+    link: "/services/motion-video",
   },
   {
-    id: "development",
-    title: "Development",
+    id: "branding",
+    title: "Branding & Identity",
     description:
-      "High-performance frontend architecture, custom interactive animations, and robust full-stack engineering engineered with clean code, lightning speeds, and scalability.",
-    tags: ["Next.js & React", "WebGL & GSAP", "Full-Stack Platforms"],
+      "We design logos, identity systems, and brand guidelines that don't chase trends—they're built to last. Every element is crafted to reflect your brand's true essence across all platforms.",
+    tags: ["Visual Identity", "Logo Systems", "Brand Guidelines"],
     images: [
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=900&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1634942537034-2531766767d1?q=80&w=900&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1547949003-9792a18a2601?q=80&w=900&auto=format&fit=crop",
     ],
-    link: "#contact",
+    link: "/services/branding",
   },
 ];
 

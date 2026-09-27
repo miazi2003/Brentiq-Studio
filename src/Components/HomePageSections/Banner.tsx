@@ -6,10 +6,10 @@ import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 
 const SERVICES_LIST = [
-  { label: "UI UX Design", href: "/services" },
-  { label: "Development", href: "/services" },
-  { label: "Website Design", href: "/services" },
-  { label: "Motion Design", href: "/services" },
+  { label: "Web Development", href: "/services/web-development" },
+  { label: "Mobile App Development", href: "/services/app-development" },
+  { label: "UI / UX Design", href: "/services/ui-ux" },
+  { label: "Motion & Branding", href: "/services/motion-video" },
 ];
 
 export default function Banner() {
@@ -137,13 +137,13 @@ export default function Banner() {
       <div className="w-full px-6 sm:px-10 lg:px-16 flex flex-col justify-between h-full flex-1 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-12 lg:pb-14 z-10">
         
         {/* TOP ROW: Right Service Info */}
-        <div className="w-full flex items-center justify-end font-body">
+        <div className="w-full flex items-center justify-start sm:justify-end">
           {/* Top Right: Tagline / Services description */}
-          <div ref={topTextRef} className="text-left sm:text-right max-w-[360px] will-change-transform">
-            <p className="text-xs sm:text-sm font-normal text-white/80 leading-relaxed tracking-wide font-body">
-              We Provide UI/UX Design And <br className="hidden sm:inline" />
-              Development Services As Well As <br className="hidden sm:inline" />
-              Branding Services
+          <div ref={topTextRef} className="text-left sm:text-right max-w-[420px] will-change-transform">
+            <p className="font-heading text-sm sm:text-base md:text-lg lg:text-[20px] font-medium text-white/95 leading-snug tracking-tight">
+              Engineering High-Performance <br className="hidden sm:inline" />
+              Web & Mobile Applications, <br className="hidden sm:inline" />
+              UI/UX & Creative Media
             </p>
           </div>
         </div>
@@ -171,7 +171,7 @@ export default function Banner() {
           {/* Bottom Right: Get Started Button & Services Pill Menu */}
           <div className="w-full sm:w-[280px] md:w-[310px] flex flex-col gap-3 shrink-0">
             <Link
-              href="#get-started"
+              href="/contact"
               className="font-button w-full py-3.5 px-6 rounded-full bg-[#FF5520] hover:bg-[#ff4410] text-white text-center font-semibold text-sm tracking-wide transition-all duration-200 shadow-lg shadow-[#FF5520]/25 hover:shadow-xl hover:shadow-[#FF5520]/40 active:scale-[0.98]"
             >
               Get Started

@@ -81,14 +81,12 @@ export default function Navbar() {
         {/* Left: Official Brand Logo */}
         <Link href="/" className="shrink-0 flex items-center py-2">
           <Image
-            src="/logo.png"
+            src={isDarkForeground ? "/logo.png" : "/logo-dark-bg.png"}
             alt="Brentiq Studio"
             width={220}
             height={64}
             priority
-            className={`h-10 sm:h-12 md:h-[50px] w-auto object-contain transition-all duration-300 ${
-              isDarkForeground ? "brightness-100" : "brightness-0 invert"
-            }`}
+            className="h-10 sm:h-12 md:h-[50px] w-auto object-contain transition-all duration-300"
           />
         </Link>
 

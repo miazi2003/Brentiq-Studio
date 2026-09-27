@@ -15,11 +15,11 @@ const EXPLORE_LINKS = [
 
 const SERVICE_LINKS = [
   { label: "Custom Web Development", href: "/services/web-development" },
+  { label: "Mobile App Development", href: "/services/app-development" },
   { label: "UI/UX Design & Systems", href: "/services/ui-ux" },
-  { label: "Shopify & E-commerce", href: "/services/shopify-ecommerce" },
-  { label: "Brand Strategy & Identity", href: "/services/branding" },
   { label: "Motion & Video Editing", href: "/services/motion-video" },
-  { label: "Performance Marketing", href: "/services/performance-marketing" },
+  { label: "Brand Strategy & Identity", href: "/services/branding" },
+  { label: "Shopify & CMS Platforms", href: "/services/shopify-cms" },
 ];
 
 function XIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -108,11 +108,11 @@ export default function Footer() {
             {/* Brentiq Logo */}
             <Link href="/" className="inline-flex items-center">
               <Image
-                src="/logo.png"
+                src="/logo-dark-bg.png"
                 alt="Brentiq Studio"
                 width={260}
                 height={75}
-                className="h-12 sm:h-14 md:h-16 w-auto object-contain brightness-0 invert"
+                className="h-12 sm:h-14 md:h-16 w-auto object-contain"
               />
             </Link>
 

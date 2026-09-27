@@ -6,11 +6,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const SERVICE_OPTIONS = [
-  "Website Development",
-  "Shopify Store",
-  "Branding & Identity",
-  "Content & Video",
-  "Performance Marketing",
+  "Custom Web Development",
+  "Mobile App Development",
+  "UI/UX Design & Prototyping",
+  "Motion & Video Editing",
+  "Brand Strategy & Identity",
+  "Shopify & E-Commerce",
   "Full Digital Package",
 ];
 
