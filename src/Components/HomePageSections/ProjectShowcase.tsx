@@ -1,318 +1,279 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-interface ProjectItem {
-  id: string;
+const CARD_GAP = 60;
+const STACK_HEADER_DESKTOP = 40;
+const STACK_HEADER_MOBILE = 20;
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+export interface CaseStudy {
+  category: string;
   title: string;
+  description: string;
   tags: string[];
-  image: string;
-  liveUrl: string;
-  githubUrl: string;
+  projectImage: string;
+  backgroundColor: string;
+  slug: string;
 }
 
-const PROJECTS_DATA: ProjectItem[] = [
+const BRENTIQ_CASE_STUDIES: CaseStudy[] = [
   {
-    id: "01",
+    category: "Custom Web Application",
     title: "Relax Studio",
-    tags: ["Website", "UI/UX"],
-    image:
+    description:
+      "A high-performance digital flagship featuring spatial audio curation, custom 60fps WebGL transitions, and headless e-commerce architecture engineered for international scale.",
+    tags: ["Next.js 16", "WebGL Motion", "Headless CMS"],
+    projectImage:
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop",
-    liveUrl: "https://relax-studio.example.com",
-    githubUrl: "https://github.com/brentiq/relax-studio",
+    backgroundColor: "#ffffff",
+    slug: "relax-studio",
   },
   {
-    id: "02",
+    category: "Shopify Plus & Brand Identity",
     title: "Aura Acoustics",
-    tags: ["Videography", "Branding"],
-    image:
+    description:
+      "Complete brand identity system, editorial art direction, and Shopify Plus store designed to reflect the acoustic purity and handcrafted precision of audiophile gear.",
+    tags: ["Shopify Plus", "Brand Strategy", "E-Commerce"],
+    projectImage:
       "https://images.unsplash.com/photo-1547949003-9792a18a2601?q=80&w=1600&auto=format&fit=crop",
-    liveUrl: "https://aura-acoustics.example.com",
-    githubUrl: "https://github.com/brentiq/aura-acoustics",
+    backgroundColor: "#ffffff",
+    slug: "aura-acoustics",
   },
   {
-    id: "03",
+    category: "Design System & Cloud Platform",
     title: "Horizon Enterprise",
-    tags: ["ERP", "Website"],
-    image:
+    description:
+      "End-to-end design system, high-throughput interactive data visualization interface, and performant web architecture for high-frequency cloud resource orchestration.",
+    tags: ["Design System", "Cloud Intelligence", "Dashboard"],
+    projectImage:
       "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1600&auto=format&fit=crop",
-    liveUrl: "https://horizon-studio.example.com",
-    githubUrl: "https://github.com/brentiq/horizon-studio",
+    backgroundColor: "#ffffff",
+    slug: "horizon-enterprise",
   },
   {
-    id: "04",
+    category: "3D Motion & Next.js Experience",
     title: "Vortex Motion",
-    tags: ["UI/UX", "Videography"],
-    image:
+    description:
+      "Dynamic interactive agency portfolio powered by real-time Three.js shaders, buttery-smooth GSAP choreography, and sub-second page transitions.",
+    tags: ["Three.js", "GSAP Motion", "Creative Dev"],
+    projectImage:
       "https://images.unsplash.com/photo-1634942537034-2531766767d1?q=80&w=1600&auto=format&fit=crop",
-    liveUrl: "https://vortex-motion.example.com",
-    githubUrl: "https://github.com/brentiq/vortex-motion",
+    backgroundColor: "#ffffff",
+    slug: "vortex-motion",
+  },
+  {
+    category: "Healthcare & AI Telehealth",
+    title: "Lumina Health",
+    description:
+      "Secure patient portal and AI triage dashboard designed for seamless clinical onboarding, real-time video consults, and strict HIPAA compliance.",
+    tags: ["Healthcare AI", "HIPAA Architecture", "Telehealth"],
+    projectImage:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1600&auto=format&fit=crop",
+    backgroundColor: "#ffffff",
+    slug: "lumina-health",
   },
 ];
 
-function GithubIcon({ className = "w-5 h-5" }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-      />
-    </svg>
-  );
-}
-
 export default function ProjectShowcase() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardsContainerRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const rootRef = useRef<HTMLElement>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const [studies] = useState<CaseStudy[]>(BRENTIQ_CASE_STUDIES);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    const section = sectionRef.current;
-    const cards = cardRefs.current.filter(Boolean);
-    const contents = contentRefs.current.filter(Boolean);
+    const root = rootRef.current;
+    const stack = stackRef.current;
+    if (!root || !stack) return;
 
-    if (!section || cards.length === 0) return;
+    const context = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>(".iw-card", stack);
+      if (cards.length < 2) return;
 
-    const ctx = gsap.context(() => {
-      // Set initial states
+      const isMobile = window.innerWidth <= 900;
+      const stackHeader = isMobile ? STACK_HEADER_MOBILE : STACK_HEADER_DESKTOP;
+      const cardGap = isMobile ? 40 : CARD_GAP;
+      const expandedHeight = () => cards[0]?.offsetHeight || (isMobile ? 540 : 480);
+
+      // Initial positions for all cards
       cards.forEach((card, index) => {
-        if (index === 0) {
-          gsap.set(card, {
-            y: "0%",
-            scale: 1,
-            opacity: 1,
-            zIndex: 10,
-            force3D: true,
-          });
-          if (contents[0]) gsap.set(contents[0], { opacity: 1, y: 0 });
-        } else {
-          gsap.set(card, {
-            y: "140%",
-            scale: 0.94,
-            opacity: 0,
-            zIndex: 10 + index,
-            force3D: true,
-          });
-          if (contents[index]) gsap.set(contents[index], { opacity: 0, y: 24 });
-        }
+        gsap.set(card, {
+          y: index === 0 ? 0 : index * (expandedHeight() + cardGap),
+          zIndex: index + 1,
+          force3D: true,
+        });
       });
 
-      // Pinned ScrollTrigger timeline for continuous card-by-card vertical flow
-      const scrollDistance = (cards.length - 1) * 1200;
+      const scrollDistance = (cards.length - 1) * (isMobile ? 480 : 650);
 
-      const tl = gsap.timeline({
+      const timeline = gsap.timeline({
+        defaults: { duration: 1, ease: "power1.inOut" },
         scrollTrigger: {
-          trigger: section,
-          start: "top top",
+          trigger: stack,
+          start: isMobile ? "top 10%" : "top 12%",
           end: `+=${scrollDistance}`,
           pin: true,
           pinSpacing: true,
-          anticipatePin: 0,
-          scrub: 1.2,
+          scrub: 0.65,
+          anticipatePin: 1,
           invalidateOnRefresh: true,
+          refreshPriority: 1,
         },
       });
 
-      // Build sequential transitions for each card flow
-      for (let i = 1; i < cards.length; i++) {
-        const prevCard = cards[i - 1];
-        const currentCard = cards[i];
-        const currentContent = contents[i];
+      for (let activeIndex = 1; activeIndex < cards.length; activeIndex++) {
+        const step = activeIndex - 1;
+        const isLastCard = activeIndex === cards.length - 1;
 
-        const stepLabel = `flow-step-${i}`;
+        if (isLastCard) {
+          cards.forEach((card, idx) => {
+            timeline.to(card, { y: idx * stackHeader }, step);
+          });
+          continue;
+        }
 
-        // 1. Previous card smoothly glides upward and exits
-        tl.to(
-          prevCard,
-          {
-            y: "-140%",
-            scale: 0.95,
-            opacity: 0,
-            duration: 1,
-            ease: "power1.inOut",
-            force3D: true,
-          },
-          stepLabel
-        );
-
-        // 2. Current card flows from below with generous gap into the exact center
-        tl.fromTo(
-          currentCard,
-          {
-            y: "140%",
-            scale: 0.94,
-            opacity: 0.2,
-            force3D: true,
-          },
-          {
-            y: "0%",
-            scale: 1,
-            opacity: 1,
-            duration: 1,
-            ease: "power1.inOut",
-            force3D: true,
-          },
-          stepLabel
-        );
-
-        // 3. Smooth reveal for project title, tags, and action buttons as card settles
-        if (currentContent) {
-          tl.to(
-            currentContent,
+        cards.slice(activeIndex).forEach((card, offset) => {
+          timeline.to(
+            card,
             {
-              opacity: 1,
-              y: 0,
-              duration: 0.45,
-              ease: "power2.out",
-            },
-            `${stepLabel}+=0.5`
-          );
-        }
+              y: () => {
+                const activeY = activeIndex * stackHeader;
+                if (offset === 0) return activeY;
 
-        // Gentle viewing pause
-        if (i < cards.length - 1) {
-          tl.to({}, { duration: 0.3 });
-        }
+                return (
+                  activeY +
+                  expandedHeight() +
+                  cardGap +
+                  (offset - 1) * (expandedHeight() + cardGap)
+                );
+              },
+            },
+            step
+          );
+        });
       }
 
-      // Small trailing cushion before unpinning cleanly
-      tl.to({}, { duration: 0.25 });
-    }, section);
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    }, root);
 
     return () => {
-      ctx.revert();
+      context.revert();
     };
-  }, []);
+  }, [studies]);
 
   return (
-    <>
-      <section
-        ref={sectionRef}
-        id="works"
-        className="relative w-full h-screen bg-white text-black px-4 sm:px-8 lg:px-12 pt-24 sm:pt-28 pb-4 sm:pb-6 flex flex-col justify-between overflow-hidden isolate"
-      >
-        {/* Top Header: "Projects" + "Our Works" badge & View All link */}
-        <div className="projects-header w-full max-w-[1440px] mx-auto flex items-center justify-between pb-3 sm:pb-4 border-b border-gray-100 shrink-0">
-          <div className="flex items-center gap-4 sm:gap-6">
-            <h2 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-black leading-none">
-              Projects
+    <section
+      id="projects"
+      className="iw-section w-full py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 bg-[#fafafa] border-t border-gray-200/80 text-gray-950 relative"
+      ref={rootRef}
+      aria-labelledby="industry-wins-heading"
+    >
+      <div className="iw-intro max-w-7xl mx-auto mb-10 sm:mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-gray-200/80">
+          <div>
+            <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-[#FF5520] font-heading block mb-2">
+              Brentiq Impact
+            </span>
+            <h2
+              id="industry-wins-heading"
+              className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-950 leading-tight"
+            >
+              Digital Products Built to Win<br />
+              <em className="italic font-serif font-normal text-[#FF5520]">
+                Across Every Industry
+              </em>
             </h2>
-
           </div>
 
           <Link
             href="/works"
-            className="font-button inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gray-100 hover:bg-[#FF5520] text-gray-900 hover:text-white text-xs sm:text-sm font-semibold transition-all duration-300 shadow-2xs group"
+            className="font-button inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-sm font-semibold tracking-wide transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-[#FF5520]/25 group shrink-0 w-fit"
           >
-            <span>View All Works</span>
-            <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <span>See All Projects</span>
+            <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
         </div>
+      </div>
 
-        {/* Center Stage: Wide Pinned Project Cards Container */}
-        <div
-          ref={cardsContainerRef}
-          className="relative w-full flex-1 flex items-center justify-center overflow-hidden my-auto"
-        >
-          {PROJECTS_DATA.map((project, index) => (
-            <div
-              key={project.id}
-              ref={(el) => {
-                cardRefs.current[index] = el;
-              }}
-              className="absolute w-[86vw] max-w-[1440px] h-[58vh] sm:h-[66vh] max-h-[720px] min-h-[440px] rounded-[26px] sm:rounded-[36px] overflow-hidden shadow-2xl border border-gray-200/80 bg-[#e8e9eb] will-change-transform flex flex-col justify-end p-6 sm:p-10 lg:p-12 isolate"
+      <div
+        className="iw-stack max-w-7xl mx-auto relative h-[560px] sm:h-[580px] lg:h-[500px]"
+        ref={stackRef}
+      >
+        {studies.map((study, index) => {
+          return (
+            <article
+              className="iw-card absolute inset-0 w-full h-[540px] sm:h-[560px] lg:h-[480px] rounded-[24px] sm:rounded-[36px] bg-white border border-gray-200/90 shadow-2xl p-5 sm:p-8 lg:p-12 overflow-hidden will-change-transform grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-14 items-center"
+              style={{ backgroundColor: study.backgroundColor }}
+              key={`${study.category}-${study.title}-${index}`}
             >
-              {/* Project Image */}
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                sizes="(max-width: 1440px) 90vw, 1440px"
-                priority={index === 0}
-                className="object-cover object-center -z-20"
-              />
-
-              {/* Subtle Vignette Layer for Typography Readability */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent -z-10 pointer-events-none" />
-
-              {/* Bottom-Left: Tags + Project Title + Minimal Icon Buttons */}
-              <div
-                ref={(el) => {
-                  contentRefs.current[index] = el;
-                }}
-                className="z-10 flex flex-col items-start gap-3 sm:gap-4 max-w-2xl will-change-transform"
-              >
-                {/* Category / Service Tags (Website, UI/UX, ERP, Videography) */}
-                <div className="flex flex-wrap items-center gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-body text-[11px] sm:text-xs font-semibold text-white/95 bg-black/45 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/20 uppercase tracking-wider shadow-sm"
-                    >
-                      {tag}
+              {/* Left Column: Category, Heading, Description, Tags & Live Link */}
+              <div className="lg:col-span-5 flex flex-col justify-between h-full py-1 space-y-4 sm:space-y-6">
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="flex items-center gap-3">
+                    <span className="font-heading text-xs sm:text-sm font-bold text-[#FF5520]">
+                      0{index + 1}
                     </span>
-                  ))}
+                    <span className="h-px w-5 sm:w-6 bg-[#FF5520]/40" />
+                    <span className="font-heading text-[11px] sm:text-xs font-bold uppercase tracking-widest text-gray-500">
+                      {study.category}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-950 tracking-tight leading-[1.1]">
+                    {study.title}
+                  </h3>
+
+                  <p className="font-body text-xs sm:text-sm lg:text-base text-gray-600 leading-relaxed line-clamp-3 sm:line-clamp-none">
+                    {study.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
+                    {study.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="font-body text-[11px] sm:text-xs font-medium px-3 py-1 rounded-full bg-gray-50 border border-gray-200/80 text-gray-700 shadow-2xs"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Large Project Heading */}
-                <h3 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight drop-shadow-md">
-                  {project.title}
-                </h3>
-
-                {/* Action Buttons: Live & GitHub (Icons ONLY) */}
-                <div className="flex items-center gap-3 pt-1">
-                  {/* Live Website Button */}
+                {/* Direct Live Link Button */}
+                <div className="pt-3 sm:pt-4 border-t border-gray-100">
                   <Link
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View live website"
-                    className="group/btn inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/25 bg-black/40 backdrop-blur-md text-white hover:bg-white hover:text-black hover:border-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shrink-0"
+                    href="/works"
+                    className="font-button inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-xs sm:text-sm lg:text-base font-semibold tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#FF5520]/25 group w-fit"
                   >
-                    <ArrowUpRight className="w-5 h-5 stroke-[2] transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                  </Link>
-
-                  {/* GitHub Repository Button */}
-                  <Link
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View GitHub repository"
-                    className="group/btn inline-flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full border border-white/25 bg-black/40 backdrop-blur-md text-white hover:bg-white hover:text-black hover:border-white transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shrink-0"
-                  >
-                    <GithubIcon className="w-5 h-5 transition-transform duration-300 group-hover/btn:scale-110" />
+                    <span>Explore Project</span>
+                    <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </Link>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* Static See More Button Section */}
-      <div className="w-full bg-white pt-6 pb-12 sm:py-16 flex items-center justify-center">
-        <Link
-          href="/works"
-          className="font-button inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#111111] hover:bg-black text-white text-sm sm:text-base font-semibold tracking-tight transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105 active:scale-95 group"
-        >
-          <span>See More Projects</span>
-          <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-        </Link>
+              {/* Right Column: Project Visual */}
+              <div className="lg:col-span-7 relative h-[200px] sm:h-[260px] lg:h-full w-full rounded-xl sm:rounded-3xl overflow-hidden bg-zinc-950 border border-gray-200 shadow-inner group">
+                <Image
+                  src={study.projectImage}
+                  alt={`${study.title} project`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 58vw"
+                  className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+              </div>
+            </article>
+          );
+        })}
       </div>
-    </>
+    </section>
   );
 }
