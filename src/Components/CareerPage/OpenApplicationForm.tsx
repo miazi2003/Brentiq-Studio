@@ -106,16 +106,6 @@ export default function OpenApplicationForm() {
           {/* ======================================================== */}
           <div className="lg:col-span-5 flex flex-col justify-between h-full space-y-8 sm:space-y-10">
             <div className="space-y-6 sm:space-y-8">
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2.5">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520] shadow-[0_0_10px_#FF5520]" />
-                </span>
-                <span className="text-xs sm:text-sm font-bold tracking-widest text-[#FF5520] font-heading uppercase">
-                  Join the Talent Network
-                </span>
-              </div>
 
               {/* Main Headline */}
               <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-[50px] font-bold text-white leading-[1.14] tracking-tight">

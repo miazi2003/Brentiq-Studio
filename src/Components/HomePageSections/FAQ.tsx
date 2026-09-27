@@ -133,16 +133,6 @@ export default function FAQ() {
             {/* LEFT COLUMN: Eyebrow + Big Section Heading               */}
             {/* ======================================================== */}
             <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-6 lg:sticky lg:top-28">
-              {/* Eyebrow Label */}
-              <div className="inline-flex items-center gap-2.5">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520] shadow-[0_0_8px_#FF5520]" />
-                </span>
-                <span className="text-xs sm:text-sm font-bold tracking-widest text-[#FF5520] font-heading uppercase">
-                  FAQ
-                </span>
-              </div>
 
               {/* Main Heading */}
               <h2 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 leading-[1.12]">

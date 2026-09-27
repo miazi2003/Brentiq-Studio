@@ -182,15 +182,6 @@ export default function Services() {
           {/* Section Header */}
           <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-10 sm:pb-14 border-b border-white/10 gap-6 mb-8 sm:mb-12">
             <div>
-              <div className="inline-flex items-center gap-2.5 mb-3.5">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520] shadow-[0_0_10px_#FF5520]" />
-                </span>
-                <span className="text-xs sm:text-sm font-bold tracking-widest text-[#FF5520] font-heading uppercase">
-                  Capabilities
-                </span>
-              </div>
               <h2 className="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
                 Our Services.
               </h2>

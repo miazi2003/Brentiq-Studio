@@ -32,17 +32,11 @@ const DISCIPLINES = [
 
 export default function TalentScoutSection() {
   return (
-    <section className="w-full bg-white text-gray-950 py-16 sm:py-24 px-4 sm:px-6 lg:px-10 border-t border-gray-200/80">
+    <section className="w-full bg-white text-gray-950 py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-t border-gray-200/80">
       <div className="max-w-7xl mx-auto flex flex-col gap-10 sm:gap-14">
         {/* Disciplines We Actively Scout For */}
         <div>
           <div className="mb-8">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/60 mb-3">
-              <span className="w-2 h-2 rounded-full bg-[#FF5520]" />
-              <span className="text-xs font-bold uppercase tracking-widest text-[#FF5520] font-heading">
-                Disciplines
-              </span>
-            </div>
             <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-950">
               Areas We Review On A Rolling Basis
             </h2>

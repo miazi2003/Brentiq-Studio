@@ -98,7 +98,7 @@ export default function ServiceProjectsCarousel({ service }: Props) {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ========================================================================= */}
         {/* 1. SECTION HEADER & DYNAMIC NAVIGATION CONTROLS                           */}
         {/* ========================================================================= */}
@@ -107,11 +107,6 @@ export default function ServiceProjectsCarousel({ service }: Props) {
           className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-12"
         >
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-xs font-bold uppercase tracking-wider text-[#FF5520] font-heading">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5520] animate-pulse" />
-              Selected Portfolio Showcase
-            </div>
-
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-950 tracking-tight leading-[1.15]">
               Featured <span className="text-[#FF5520]">{service.title}</span> Works
             </h2>

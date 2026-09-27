@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function ServicesHero() {
   return (
-    <section className="w-full bg-white text-gray-950 pt-14 sm:pt-20 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-10 overflow-hidden relative isolate">
+    <section className="w-full bg-white text-gray-950 pt-14 sm:pt-20 pb-10 sm:pb-14 px-4 sm:px-6 lg:px-8 overflow-hidden relative isolate">
       {/* Subtle Background Ambient Glows */}
       <div
         className="absolute top-0 right-1/4 w-[500px] h-[350px] bg-[#FF5520]/[0.06] rounded-full blur-[120px] -z-10 pointer-events-none"
@@ -17,18 +17,7 @@ export default function ServicesHero() {
         aria-hidden="true"
       />
 
-      <div className="max-w-7xl mx-auto flex flex-col gap-8 sm:gap-10">
-        {/* Top Eyebrow Badge */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-orange-50 border border-orange-200/60 w-fit">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520]" />
-          </span>
-          <span className="text-xs font-semibold text-[#FF5520] uppercase tracking-widest font-heading">
-            Our Core Expertise
-          </span>
-        </div>
-
+      <div className="max-w-7xl mx-auto">
         {/* Editorial Headline & Supporting Paragraph Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end">
           {/* Main Large Editorial Headline */}

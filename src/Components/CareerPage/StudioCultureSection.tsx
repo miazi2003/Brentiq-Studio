@@ -43,7 +43,7 @@ const VALUES = [
 
 export default function StudioCultureSection() {
   return (
-    <section id="why-brentiq" className="w-full bg-white text-gray-950 py-16 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16 border-t border-gray-100">
+    <section id="why-brentiq" className="w-full bg-white text-gray-950 py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
       <div className="max-w-7xl mx-auto flex flex-col gap-12 sm:gap-16">
         {/* Section Header */}
         <div className="flex flex-col gap-3 max-w-2xl">

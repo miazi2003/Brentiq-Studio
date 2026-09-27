@@ -6,7 +6,7 @@ import { ArrowUpRight, Calendar, FileText } from "lucide-react";
 
 export default function CareerHero() {
   return (
-    <section className="w-full min-h-[calc(100dvh-86px)] flex flex-col justify-center bg-[#070709] text-white pt-10 sm:pt-14 pb-14 sm:pb-20 px-6 sm:px-10 lg:px-16 overflow-hidden relative isolate border-b border-white/10">
+    <section className="w-full min-h-[calc(100dvh-86px)] flex flex-col justify-center bg-[#070709] text-white pt-10 sm:pt-14 pb-14 sm:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden relative isolate border-b border-white/10">
       {/* 1. Atmospheric Dark & Orange Gradient Meshes */}
       <div
         className="absolute inset-0 -z-20 pointer-events-none"
@@ -28,16 +28,6 @@ export default function CareerHero() {
       />
 
       <div className="max-w-7xl w-full mx-auto flex flex-col justify-center gap-8 sm:gap-12 lg:gap-14 relative z-10">
-        {/* Top Eyebrow with Pulsing Orange Dot */}
-        <div className="inline-flex items-center gap-2.5">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520] shadow-[0_0_10px_#FF5520]" />
-          </span>
-          <span className="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-[0.18em] text-white/70 font-heading">
-            Globally build a strong digital presence that people love
-          </span>
-        </div>
 
         {/* Main Headline & Signature Orange Arrow */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-16">

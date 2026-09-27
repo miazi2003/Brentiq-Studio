@@ -212,15 +212,6 @@ export default function ProjectShowcase() {
               Projects
             </h2>
 
-            <div className="hidden sm:inline-flex items-center gap-2.5">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520] shadow-[0_0_8px_#FF5520]" />
-              </span>
-              <span className="text-xs sm:text-sm font-semibold tracking-wide text-gray-900 font-body">
-                Our Works
-              </span>
-            </div>
           </div>
 
           <Link
@@ -315,7 +306,7 @@ export default function ProjectShowcase() {
       {/* Static See More Button Section */}
       <div className="w-full bg-white pt-6 pb-12 sm:py-16 flex items-center justify-center">
         <Link
-          href="#contact"
+          href="/works"
           className="font-button inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#111111] hover:bg-black text-white text-sm sm:text-base font-semibold tracking-tight transition-all duration-300 shadow-md hover:shadow-xl hover:scale-105 active:scale-95 group"
         >
           <span>See More Projects</span>

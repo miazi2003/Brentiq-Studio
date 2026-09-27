@@ -116,7 +116,7 @@ export default function ServiceScopeAndRelated({ service }: Props) {
       {/* ========================================================================= */}
       <section
         ref={scopeSectionRef}
-        className="w-full px-4 sm:px-6 lg:px-10 py-10 max-w-7xl mx-auto"
+        className="w-full px-4 sm:px-6 lg:px-8 py-10 max-w-7xl mx-auto"
       >
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-gray-100">
           <Link
@@ -144,11 +144,6 @@ export default function ServiceScopeAndRelated({ service }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start pt-14">
           {/* Left Column: Headline, Narrative & Primary Magnetic CTA */}
           <div ref={leftColRef} className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 border border-gray-200/80 text-xs font-bold uppercase tracking-wider text-gray-700 font-heading">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF5520] animate-pulse" />
-              Comprehensive Scope
-            </div>
-
             <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-bold text-gray-950 tracking-tight leading-[1.12]">
               Engineered for <br className="hidden sm:inline" />
               <span className="text-[#FF5520]">impact</span> & longevity.

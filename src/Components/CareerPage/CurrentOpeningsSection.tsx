@@ -105,7 +105,7 @@ export default function CurrentOpeningsSection() {
   };
 
   return (
-    <section id="openings" className="w-full bg-white text-gray-950 py-16 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16 border-t border-gray-100">
+    <section id="openings" className="w-full bg-white text-gray-950 py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 border-t border-gray-100">
       <div className="max-w-7xl mx-auto flex flex-col gap-12 sm:gap-16">
         {/* Header Grid */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 lg:gap-16 pb-4">

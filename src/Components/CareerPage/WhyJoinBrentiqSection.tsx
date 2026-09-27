@@ -20,7 +20,7 @@ export default function WhyJoinBrentiqSection() {
   return (
     <section
       id="why-join"
-      className="w-full bg-[#fbfbfd] text-gray-950 py-16 sm:py-24 lg:py-28 px-6 sm:px-10 lg:px-16 border-b border-gray-100"
+      className="w-full bg-[#fbfbfd] text-gray-950 py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 border-b border-gray-100"
     >
       <div className="max-w-7xl mx-auto flex flex-col gap-12 sm:gap-16">
         
@@ -28,10 +28,6 @@ export default function WhyJoinBrentiqSection() {
         {/* SECTION HEADER                                           */}
         {/* ======================================================== */}
         <div className="flex flex-col items-start gap-3.5 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-[#FF5520]/20 text-[#FF5520] text-xs font-semibold uppercase tracking-wider font-heading">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#FF5520]" />
-            <span>Opportunities</span>
-          </div>
 
           <h2 className="font-heading text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-gray-950 leading-[1.08]">
             Why join Brentiq
