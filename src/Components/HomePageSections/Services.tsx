@@ -144,9 +144,20 @@ export default function Services() {
     };
   }, []);
 
+  const rectRef = useRef<DOMRect | null>(null);
+
+  const handleMouseEnter = () => {
+    if (sectionRef.current) {
+      rectRef.current = sectionRef.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cursorRef.current || !xToRef.current || !yToRef.current || window.innerWidth < 1024) return;
-    const rect = sectionRef.current?.getBoundingClientRect();
+    if (!rectRef.current) {
+      rectRef.current = sectionRef.current?.getBoundingClientRect() || null;
+    }
+    const rect = rectRef.current;
     if (!rect) return;
 
     xToRef.current(e.clientX - rect.left);
@@ -159,6 +170,7 @@ export default function Services() {
     <section
       ref={sectionRef}
       id="services"
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       className="relative z-20 w-full bg-white px-3 sm:px-5 lg:px-6 py-4 sm:py-6"
     >
@@ -208,7 +220,7 @@ export default function Services() {
             {/* ======================================================== */}
             <div
               ref={leftColRef}
-              className="lg:col-span-6 flex flex-col divide-y divide-white/15 will-change-transform"
+              className="lg:col-span-6 flex flex-col divide-y divide-white/15"
             >
               {SERVICES_DATA.map((service, index) => {
                 const isActive = activeIndex === index;
@@ -261,7 +273,7 @@ export default function Services() {
             {/* ======================================================== */}
             <div
               ref={rightColRef}
-              className="lg:col-span-6 flex flex-col will-change-transform"
+              className="lg:col-span-6 flex flex-col"
             >
               {/* Two Images Side by Side */}
               <div className="grid grid-cols-2 gap-3.5 sm:gap-5 w-full">

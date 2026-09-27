@@ -14,6 +14,7 @@ const SERVICES_LIST = [
 
 export default function Banner() {
   const containerRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const topTextRef = useRef<HTMLDivElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -22,7 +23,25 @@ export default function Banner() {
 
   useEffect(() => {
     const container = containerRef.current;
+    const video = videoRef.current;
     if (!container) return;
+
+    // Pause video when scrolled out of view to free CPU & GPU decoding
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined" && video) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(container);
+    }
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -99,6 +118,7 @@ export default function Banner() {
     }, container);
 
     return () => {
+      if (observer) observer.disconnect();
       ctx.revert();
     };
   }, []);
@@ -111,10 +131,12 @@ export default function Banner() {
     >
       {/* 1. Background Video (Spans 100% of viewport edge-to-edge) */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover -z-20 pointer-events-none"
       >
         <source

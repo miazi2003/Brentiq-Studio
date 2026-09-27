@@ -105,7 +105,7 @@ export default function Testimonials() {
 
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [progress, setProgress] = useState(0);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
   // Mouse drag state
   const isDragging = useRef(false);
@@ -127,16 +127,23 @@ export default function Testimonials() {
       const maxScroll = scrollWidth - clientWidth;
 
       if (maxScroll <= 0) {
-        setProgress(100);
-        setCanScrollLeft(false);
-        setCanScrollRight(false);
+        if (progressBarRef.current) {
+          progressBarRef.current.style.width = "100%";
+        }
+        setCanScrollLeft((prev) => (prev ? false : prev));
+        setCanScrollRight((prev) => (prev ? false : prev));
         return;
       }
 
       const currentProgress = Math.min(100, Math.max(0, (scrollLeft / maxScroll) * 100));
-      setProgress(currentProgress);
-      setCanScrollLeft(scrollLeft > 10);
-      setCanScrollRight(scrollLeft < maxScroll - 10);
+      if (progressBarRef.current) {
+        progressBarRef.current.style.width = `${Math.max(15, currentProgress)}%`;
+      }
+
+      const newCanLeft = scrollLeft > 10;
+      const newCanRight = scrollLeft < maxScroll - 10;
+      setCanScrollLeft((prev) => (prev !== newCanLeft ? newCanLeft : prev));
+      setCanScrollRight((prev) => (prev !== newCanRight ? newCanRight : prev));
     });
   }, []);
 
@@ -314,9 +321,10 @@ export default function Testimonials() {
           {/* Progress Bar */}
           <div className="relative h-[2.5px] w-40 sm:w-64 md:w-80 lg:w-96 bg-zinc-300/80 rounded-full overflow-hidden">
             <div
+              ref={progressBarRef}
               className="h-full bg-zinc-900 rounded-full transition-all duration-200 ease-out"
               style={{
-                width: `${Math.max(15, progress)}%`,
+                width: "15%",
               }}
             />
           </div>

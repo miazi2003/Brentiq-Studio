@@ -33,7 +33,7 @@ export default function SmoothScroll() {
     };
 
     gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(1000, 16);
+    gsap.ticker.lagSmoothing(0);
 
     const handleHashClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement)?.closest("a");

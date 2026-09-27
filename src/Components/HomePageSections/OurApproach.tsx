@@ -145,7 +145,7 @@ export default function OurApproach() {
                   ref={(el) => {
                     if (el) statementWordsRef.current[i] = el;
                   }}
-                  className="inline-block mr-[0.28em] text-[#cbd5e1] will-change-[color] transition-colors"
+                  className="inline-block mr-[0.28em] text-[#cbd5e1]"
                 >
                   {word}
                 </span>
@@ -190,7 +190,7 @@ export default function OurApproach() {
             {/* RIGHT COLUMN: Large Premium Editorial Visual */}
             <div
               ref={visualRef}
-              className="lg:col-span-7 w-full flex flex-col will-change-transform"
+              className="lg:col-span-7 w-full flex flex-col"
             >
               <div className="relative aspect-[16/10] sm:aspect-[16/9.5] w-full rounded-2xl sm:rounded-[28px] overflow-hidden bg-zinc-100 border border-zinc-200/90 shadow-lg group">
                 <Image

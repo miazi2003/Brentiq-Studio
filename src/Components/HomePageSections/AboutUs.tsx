@@ -191,7 +191,7 @@ export default function AboutUs() {
         {/* Outer Rounded Section Card */}
         <div
           ref={containerRef}
-          className="relative w-full h-full rounded-[24px] sm:rounded-[36px] bg-[#fafafa] border border-gray-200/70 p-4 sm:p-8 lg:p-14 flex flex-col justify-between overflow-hidden shadow-sm isolate will-change-transform"
+          className="relative w-full h-full rounded-[24px] sm:rounded-[36px] bg-[#fafafa] border border-gray-200/70 p-4 sm:p-8 lg:p-14 flex flex-col justify-between overflow-hidden shadow-sm isolate"
         >
           {/* TOP ROW: 150px Gradient About Us Heading & Progressive Animated Copy */}
           <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-6 sm:gap-8 lg:gap-12">
@@ -211,7 +211,7 @@ export default function AboutUs() {
                     ref={(el) => {
                       if (el) textWordsRef.current[i] = el;
                     }}
-                    className="inline-block mr-[0.28em] text-[#cbd5e1] will-change-[color]"
+                    className="inline-block mr-[0.28em] text-[#cbd5e1]"
                   >
                     {word}
                   </span>
@@ -243,7 +243,7 @@ export default function AboutUs() {
                     ref={(el) => {
                       cardRefs.current[index] = el;
                     }}
-                    className="relative h-[74px] sm:h-[96px] md:h-[260px] lg:h-[300px] w-full rounded-[16px] sm:rounded-[20px] md:rounded-[28px] border bg-white px-4 py-2.5 sm:px-6 sm:py-4 md:p-8 flex flex-row md:flex-col justify-between items-center md:items-stretch shadow-xs will-change-transform overflow-hidden isolate"
+                    className="relative h-[74px] sm:h-[96px] md:h-[260px] lg:h-[300px] w-full rounded-[16px] sm:rounded-[20px] md:rounded-[28px] border bg-white px-4 py-2.5 sm:px-6 sm:py-4 md:p-8 flex flex-row md:flex-col justify-between items-center md:items-stretch shadow-xs overflow-hidden isolate"
                     style={{
                       backgroundColor: "#ffffff",
                     }}
@@ -253,7 +253,7 @@ export default function AboutUs() {
                       ref={(el) => {
                         gradientOverlayRefs.current[index] = el;
                       }}
-                      className="absolute inset-0 pointer-events-none -z-10 rounded-[16px] sm:rounded-[20px] md:rounded-[28px] opacity-0 will-change-opacity"
+                      className="absolute inset-0 pointer-events-none -z-10 rounded-[16px] sm:rounded-[20px] md:rounded-[28px] opacity-0"
                       style={{
                         background:
                           "linear-gradient(135deg, #111111 0%, #1c0e08 45%, #FF5520 100%)",

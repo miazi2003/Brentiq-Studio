@@ -15,14 +15,6 @@ const SERVICE_OPTIONS = [
   "Full Digital Package",
 ];
 
-const BUDGET_OPTIONS = [
-  "Less than $5K",
-  "$5K - $10K",
-  "$10K - $20K",
-  "$20K - $50K",
-  "More than $50K",
-];
-
 interface ContactCTAProps {
   defaultService?: string;
 }
@@ -44,7 +36,6 @@ export default function ContactCTA({ defaultService }: ContactCTAProps = {}) {
     email: "",
     company: "",
     service: initialService,
-    budget: BUDGET_OPTIONS[1],
     details: "",
   });
 
@@ -422,34 +413,6 @@ export default function ContactCTA({ defaultService }: ContactCTAProps = {}) {
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Budget Selection Buttons */}
-                <div className="space-y-2.5">
-                  <label className="font-heading text-sm sm:text-base font-semibold text-white/90 block">
-                    Project Budget
-                  </label>
-                  <div className="flex flex-wrap gap-2.5 sm:gap-3">
-                    {BUDGET_OPTIONS.map((opt) => {
-                      const isSelected = formData.budget === opt;
-                      return (
-                        <button
-                          key={opt}
-                          type="button"
-                          onClick={() =>
-                            setFormData((prev) => ({ ...prev, budget: opt }))
-                          }
-                          className={`px-4 sm:px-5.5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl text-sm sm:text-base font-medium transition-all duration-200 border cursor-pointer ${
-                            isSelected
-                              ? "bg-[#FF5520] text-white border-[#FF5520] shadow-[0_0_14px_rgba(255,85,32,0.35)] scale-[1.02]"
-                              : "bg-[#111217] text-white/80 border-white/10 hover:border-white/25 hover:text-white hover:bg-white/[0.06]"
-                          }`}
-                        >
-                          {opt}
-                        </button>
-                      );
-                    })}
                   </div>
                 </div>
 

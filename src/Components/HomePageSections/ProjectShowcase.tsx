@@ -7,9 +7,9 @@ import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const CARD_GAP = 60;
-const STACK_HEADER_DESKTOP = 40;
-const STACK_HEADER_MOBILE = 20;
+const CARD_GAP = 50;
+const STACK_HEADER_DESKTOP = 20;
+const STACK_HEADER_MOBILE = 12;
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -100,25 +100,25 @@ export default function ProjectShowcase() {
 
       const isMobile = window.innerWidth <= 900;
       const stackHeader = isMobile ? STACK_HEADER_MOBILE : STACK_HEADER_DESKTOP;
-      const cardGap = isMobile ? 40 : CARD_GAP;
-      const expandedHeight = () => cards[0]?.offsetHeight || (isMobile ? 540 : 480);
+      const cardGap = isMobile ? 30 : CARD_GAP;
+      const cardHeight = cards[0]?.offsetHeight || (isMobile ? 500 : 450);
 
       // Initial positions for all cards
       cards.forEach((card, index) => {
         gsap.set(card, {
-          y: index === 0 ? 0 : index * (expandedHeight() + cardGap),
+          y: index === 0 ? 0 : index * (cardHeight + cardGap),
           zIndex: index + 1,
           force3D: true,
         });
       });
 
-      const scrollDistance = (cards.length - 1) * (isMobile ? 480 : 650);
+      const scrollDistance = (cards.length - 1) * (isMobile ? 440 : 580);
 
       const timeline = gsap.timeline({
         defaults: { duration: 1, ease: "power1.inOut" },
         scrollTrigger: {
-          trigger: stack,
-          start: isMobile ? "top 10%" : "top 12%",
+          trigger: root,
+          start: isMobile ? "top 6%" : "top 4%",
           end: `+=${scrollDistance}`,
           pin: true,
           pinSpacing: true,
@@ -141,20 +141,16 @@ export default function ProjectShowcase() {
         }
 
         cards.slice(activeIndex).forEach((card, offset) => {
+          const activeY = activeIndex * stackHeader;
+          const targetY =
+            offset === 0
+              ? activeY
+              : activeY + cardHeight + cardGap + (offset - 1) * (cardHeight + cardGap);
+
           timeline.to(
             card,
             {
-              y: () => {
-                const activeY = activeIndex * stackHeader;
-                if (offset === 0) return activeY;
-
-                return (
-                  activeY +
-                  expandedHeight() +
-                  cardGap +
-                  (offset - 1) * (expandedHeight() + cardGap)
-                );
-              },
+              y: targetY,
             },
             step
           );
@@ -172,11 +168,11 @@ export default function ProjectShowcase() {
   return (
     <section
       id="projects"
-      className="iw-section w-full py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 bg-[#fafafa] border-t border-gray-200/80 text-gray-950 relative"
+      className="iw-section w-full pt-16 pb-24 sm:pt-20 sm:pb-32 lg:pt-24 lg:pb-36 px-4 sm:px-6 lg:px-8 bg-[#fafafa] border-t border-gray-200/80 text-gray-950 relative overflow-hidden"
       ref={rootRef}
       aria-labelledby="industry-wins-heading"
     >
-      <div className="iw-intro max-w-7xl mx-auto mb-10 sm:mb-16">
+      <div className="iw-intro max-w-7xl mx-auto mb-8 sm:mb-12">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-6 border-b border-gray-200/80">
           <div>
             <span className="text-xs sm:text-sm font-semibold uppercase tracking-widest text-[#FF5520] font-heading block mb-2">
@@ -195,7 +191,7 @@ export default function ProjectShowcase() {
 
           <Link
             href="/works"
-            className="font-button inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-sm font-semibold tracking-wide transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-[#FF5520]/25 group shrink-0 w-fit"
+            className="font-button inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-sm font-semibold tracking-wide transition-all duration-300 shadow-sm hover:shadow-md group shrink-0 w-fit"
           >
             <span>See All Projects</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -204,18 +200,18 @@ export default function ProjectShowcase() {
       </div>
 
       <div
-        className="iw-stack max-w-7xl mx-auto relative h-[560px] sm:h-[580px] lg:h-[500px]"
+        className="iw-stack max-w-7xl mx-auto relative h-[520px] sm:h-[540px] lg:h-[490px]"
         ref={stackRef}
       >
         {studies.map((study, index) => {
           return (
             <article
-              className="iw-card absolute inset-0 w-full h-[540px] sm:h-[560px] lg:h-[480px] rounded-[24px] sm:rounded-[36px] bg-white border border-gray-200/90 shadow-2xl p-5 sm:p-8 lg:p-12 overflow-hidden will-change-transform grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-14 items-center"
+              className="iw-card absolute inset-0 w-full h-[480px] sm:h-[500px] lg:h-[450px] rounded-[24px] sm:rounded-[32px] bg-white border border-gray-200/90 shadow-[0_4px_24px_rgba(0,0,0,0.04)] p-5 sm:p-8 lg:p-10 overflow-hidden will-change-transform grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center"
               style={{ backgroundColor: study.backgroundColor }}
               key={`${study.category}-${study.title}-${index}`}
             >
               {/* Left Column: Category, Heading, Description, Tags & Live Link */}
-              <div className="lg:col-span-5 flex flex-col justify-between h-full py-1 space-y-4 sm:space-y-6">
+              <div className="lg:col-span-5 flex flex-col justify-between h-full py-1 space-y-4 sm:space-y-5">
                 <div className="space-y-3 sm:space-y-4">
                   <div className="flex items-center gap-3">
                     <span className="font-heading text-xs sm:text-sm font-bold text-[#FF5520]">
@@ -227,7 +223,7 @@ export default function ProjectShowcase() {
                     </span>
                   </div>
 
-                  <h3 className="font-heading text-2xl sm:text-3xl lg:text-5xl font-bold text-gray-950 tracking-tight leading-[1.1]">
+                  <h3 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-950 tracking-tight leading-[1.1]">
                     {study.title}
                   </h3>
 
@@ -251,7 +247,7 @@ export default function ProjectShowcase() {
                 <div className="pt-3 sm:pt-4 border-t border-gray-100">
                   <Link
                     href="/works"
-                    className="font-button inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-xs sm:text-sm lg:text-base font-semibold tracking-wide transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-[#FF5520]/25 group w-fit"
+                    className="font-button inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-xs sm:text-sm lg:text-base font-semibold tracking-wide transition-all duration-300 shadow-sm hover:shadow-md group w-fit"
                   >
                     <span>Explore Project</span>
                     <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -260,7 +256,7 @@ export default function ProjectShowcase() {
               </div>
 
               {/* Right Column: Project Visual */}
-              <div className="lg:col-span-7 relative h-[200px] sm:h-[260px] lg:h-full w-full rounded-xl sm:rounded-3xl overflow-hidden bg-zinc-950 border border-gray-200 shadow-inner group">
+              <div className="lg:col-span-7 relative h-[190px] sm:h-[240px] lg:h-full w-full rounded-xl sm:rounded-2xl overflow-hidden bg-zinc-950 border border-gray-200 shadow-2xs group">
                 <Image
                   src={study.projectImage}
                   alt={`${study.title} project`}
@@ -268,7 +264,7 @@ export default function ProjectShowcase() {
                   sizes="(max-width: 1024px) 100vw, 58vw"
                   className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
               </div>
             </article>
           );

@@ -26,35 +26,50 @@ export default function Navbar() {
 
   useEffect(() => {
     let ticking = false;
+    let cachedHeroHeight = window.innerHeight;
+
+    const measureHero = () => {
+      if (isHomePage) {
+        const heroEl = document.getElementById("home");
+        cachedHeroHeight = heroEl ? heroEl.offsetHeight : window.innerHeight;
+      }
+    };
+
+    const updateScrollState = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      if (!isHomePage) {
+        setIsOverHero(false);
+        ticking = false;
+        return;
+      }
+
+      const headerThreshold = cachedHeroHeight - 86;
+      setIsOverHero(scrollY < headerThreshold);
+      ticking = false;
+    };
+
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          setIsScrolled(scrollY > 20);
-
-          if (!isHomePage) {
-            setIsOverHero(false);
-            ticking = false;
-            return;
-          }
-
-          const heroEl = document.getElementById("home");
-          const heroHeight = heroEl ? heroEl.offsetHeight : window.innerHeight;
-          const headerThreshold = heroHeight - 86;
-
-          setIsOverHero(scrollY < headerThreshold);
-          ticking = false;
-        });
+        window.requestAnimationFrame(updateScrollState);
         ticking = true;
       }
     };
 
+    const handleResize = () => {
+      measureHero();
+      handleScroll();
+    };
+
+    measureHero();
     handleScroll();
+
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, [isHomePage]);
 

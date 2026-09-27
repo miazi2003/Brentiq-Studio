@@ -179,7 +179,7 @@ export default function HowWeWork() {
     <section
       id="process"
       ref={containerRef}
-      className="w-full px-3 sm:px-5 lg:px-6 py-4 sm:py-6 bg-white"
+      className="w-full px-3 sm:px-5 lg:px-6 py-12 sm:py-16 lg:py-20 bg-white"
     >
       {/* Outer Rounded Section Card matching other sections */}
       <div
@@ -229,7 +229,7 @@ export default function HowWeWork() {
                   ref={(el) => {
                     markerRefs.current[index] = el;
                   }}
-                  className="absolute left-[-2px] sm:left-[-1px] top-2 sm:top-3 w-4 h-4 rounded-[3px] bg-zinc-600 border border-black transition-all duration-300 z-20"
+                  className="absolute left-[-2px] sm:left-[-1px] top-2 sm:top-3 w-4 h-4 rounded-[3px] bg-zinc-600 border border-black z-20"
                 />
 
                 {/* Left Column: Title + Step Number + Description */}
