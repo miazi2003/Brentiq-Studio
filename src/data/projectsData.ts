@@ -50,7 +50,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop",
     tags: ["Custom Architecture", "WebGL Motion", "UI/UX Design"],
     featured: true,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://relax-studio.example.com",
     metrics: [
       { label: "Performance Score", value: "99/100" },
@@ -72,7 +72,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1547949003-9792a18a2601?q=80&w=1600&auto=format&fit=crop",
     tags: ["Shopify Plus", "E-Commerce", "Brand Strategy"],
     featured: true,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://aura-acoustics.example.com",
     metrics: [
       { label: "Conversion Lift", value: "+48%" },
@@ -94,7 +94,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1600&auto=format&fit=crop",
     tags: ["Product Design", "Design Tokens", "Dashboard UX"],
     featured: true,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://horizon-studio.example.com",
     metrics: [
       { label: "User Task Efficiency", value: "+62%" },
@@ -116,7 +116,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1634942537034-2531766767d1?q=80&w=1600&auto=format&fit=crop",
     tags: ["Interactive Video", "Next.js", "Creative Direction"],
     featured: false,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://vortex-motion.example.com",
     metrics: [
       { label: "Video Load Time", value: "<0.4s" },
@@ -138,7 +138,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1600&auto=format&fit=crop",
     tags: ["Shopify", "Subscriptions", "Brand Identity"],
     featured: false,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://luxe-botanicals.example.com",
     metrics: [
       { label: "Repeat Order Rate", value: "42%" },
@@ -160,7 +160,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop",
     tags: ["Headless WordPress", "Editorial", "LP Portal"],
     featured: false,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://strata-capital.example.com",
     metrics: [
       { label: "Lighthouse Speed", value: "100/100" },
@@ -182,7 +182,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
     tags: ["Wix Studio", "Architecture", "Minimalism"],
     featured: false,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://atelier-nordic.example.com",
     metrics: [
       { label: "Inquiry Growth", value: "+90%" },
@@ -204,7 +204,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1600&auto=format&fit=crop",
     tags: ["Squarespace", "Personal Brand", "Media Kit"],
     featured: false,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://maya-lin.example.com",
     metrics: [
       { label: "Keynote Inquiries", value: "+115%" },
@@ -226,7 +226,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1600&auto=format&fit=crop",
     tags: ["Mobile UX", "Design Systems", "FinTech"],
     featured: true,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://novus-pay.example.com",
     metrics: [
       { label: "App Store Rating", value: "4.9★" },
@@ -248,7 +248,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1527061011665-3652c757a4d4?q=80&w=1600&auto=format&fit=crop",
     tags: ["Brand Identity", "Packaging", "Art Direction"],
     featured: false,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://zenith-spirits.example.com",
     metrics: [
       { label: "Retail Distribution", value: "+300%" },
@@ -270,7 +270,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1600&auto=format&fit=crop",
     tags: ["React / Node", "Live WebSockets", "SaaS Platform"],
     featured: false,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://flightsync.example.com",
     metrics: [
       { label: "Booking Velocity", value: "4.2x Faster" },
@@ -292,7 +292,7 @@ export const PROJECTS_DATA: ProjectItemData[] = [
       "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop",
     tags: ["WordPress", "Healthcare", "SEO Architecture"],
     featured: false,
-    link: "/#contact",
+    link: "/contact",
     liveUrl: "https://lumina-health.example.com",
     metrics: [
       { label: "Organic Search Traffic", value: "+210%" },

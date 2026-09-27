@@ -77,7 +77,7 @@ export default function AboutPage() {
           {/* CTA Row */}
           <div className="flex flex-wrap items-center gap-4 pt-4">
             <Link
-              href="/#contact"
+              href="/contact"
               className="font-button inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#FF5520] hover:bg-[#ff4410] text-white text-base font-semibold transition-all duration-200 shadow-lg shadow-[#FF5520]/25 hover:shadow-xl hover:shadow-[#FF5520]/40 group"
             >
               <span>Start A Project</span>
@@ -85,7 +85,7 @@ export default function AboutPage() {
             </Link>
 
             <Link
-              href="/#works"
+              href="/works"
               className="font-button inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-900 text-base font-semibold transition-all duration-200"
             >
               <span>View Selected Works</span>
@@ -201,7 +201,7 @@ export default function AboutPage() {
             </p>
             <div className="pt-4">
               <Link
-                href="/#contact"
+                href="/contact"
                 className="font-button inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#FF5520] hover:bg-[#ff4410] text-white text-base font-semibold transition-all duration-200 shadow-xl shadow-[#FF5520]/25 group"
               >
                 <span>Get in Touch with Our Team</span>

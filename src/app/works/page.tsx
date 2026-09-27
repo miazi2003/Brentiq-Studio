@@ -34,7 +34,7 @@ export default function WorksPage() {
             </p>
             <div className="pt-3">
               <Link
-                href="/#contact"
+                href="/contact"
                 className="font-button inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#FF5520] hover:bg-[#ff4410] text-white text-base font-semibold transition-all duration-200 shadow-xl shadow-[#FF5520]/30 hover:scale-105 group"
               >
                 <span>Start Your Project Brief</span>

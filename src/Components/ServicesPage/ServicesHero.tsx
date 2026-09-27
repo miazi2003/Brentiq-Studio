@@ -54,7 +54,7 @@ export default function ServicesHero() {
 
             <div className="flex items-center gap-4">
               <Link
-                href="/#contact"
+                href="/contact"
                 className="font-button inline-flex items-center gap-2.5 px-6 py-3.5 rounded-full bg-[#FF5520] hover:bg-[#ff4410] text-white text-sm font-semibold tracking-wide transition-all duration-200 shadow-lg shadow-[#FF5520]/25 hover:shadow-xl hover:shadow-[#FF5520]/40 group"
               >
                 <span>Start a Project</span>

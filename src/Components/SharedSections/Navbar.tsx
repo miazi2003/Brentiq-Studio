@@ -7,14 +7,13 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 
 const NAV_LINKS = [
-  { href: "/#home", label: "Home" },
-  { href: "/#about", label: "About" },
-  { href: "/#services", label: "Services" },
-  { href: "/#works", label: "Works" },
-  { href: "/#process", label: "Process" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/works", label: "Works" },
   { href: "/#questions", label: "Questions" },
   { href: "/career", label: "Career" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -26,20 +25,28 @@ export default function Navbar() {
   const isHomePage = pathname === "/";
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          setIsScrolled(scrollY > 20);
 
-      if (!isHomePage) {
-        setIsOverHero(false);
-        return;
+          if (!isHomePage) {
+            setIsOverHero(false);
+            ticking = false;
+            return;
+          }
+
+          const heroEl = document.getElementById("home");
+          const heroHeight = heroEl ? heroEl.offsetHeight : window.innerHeight;
+          const headerThreshold = heroHeight - 86;
+
+          setIsOverHero(scrollY < headerThreshold);
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      const heroEl = document.getElementById("home");
-      const heroHeight = heroEl ? heroEl.offsetHeight : window.innerHeight;
-      const headerThreshold = heroHeight - 86;
-
-      setIsOverHero(scrollY < headerThreshold);
     };
 
     handleScroll();
@@ -116,7 +123,7 @@ export default function Navbar() {
         {/* Right: CTA Button */}
         <div className="hidden lg:flex items-center">
           <Link
-            href="#get-started"
+            href="/contact"
             className={`font-button inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-semibold tracking-tight transition-all duration-300 shadow-sm hover:shadow-md active:scale-95 ${
               isDarkForeground
                 ? "bg-[#111111] hover:bg-black text-white"
@@ -209,7 +216,7 @@ export default function Navbar() {
             }`}
           >
             <Link
-              href="/#contact"
+              href="/contact"
               onClick={() => setIsMenuOpen(false)}
               className="w-full font-button inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#FF5520] hover:bg-[#e04515] text-white text-sm font-semibold tracking-wide shadow-md hover:shadow-lg hover:shadow-[#FF5520]/25 transition-all duration-300 active:scale-98 group"
             >

@@ -33,7 +33,7 @@ export default function SmoothScroll() {
     };
 
     gsap.ticker.add(updateTicker);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(1000, 16);
 
     const handleHashClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement)?.closest("a");
@@ -63,6 +63,7 @@ export default function SmoothScroll() {
     return () => {
       document.removeEventListener("click", handleHashClick);
       gsap.ticker.remove(updateTicker);
+      lenis.off("scroll", ScrollTrigger.update);
       lenis.destroy();
       lenisRef.current = null;
     };

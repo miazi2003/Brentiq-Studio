@@ -133,7 +133,7 @@ export default function AllServicesSection() {
                       </Link>
 
                       <Link
-                        href="/#contact"
+                        href="/contact"
                         className="font-button inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-900 text-sm font-medium transition-colors"
                       >
                         <span>Start Project</span>

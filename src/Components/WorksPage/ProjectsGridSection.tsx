@@ -172,7 +172,7 @@ export default function ProjectsGridSection() {
                       </span>
 
                       <Link
-                        href="/#contact"
+                        href="/contact"
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#111111] hover:bg-[#FF5520] text-white text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-[#FF5520]/25 group/btn"
                       >
                         <span>Explore Project</span>

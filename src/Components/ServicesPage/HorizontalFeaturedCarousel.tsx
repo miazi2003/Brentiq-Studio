@@ -19,12 +19,14 @@ export default function HorizontalFeaturedCarousel() {
   const dragStartPosRef = useRef(0);
   const singleSetWidthRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
+  const isVisibleRef = useRef(true);
 
   // Duplicate items 3 times for completely seamless infinite looping
   const items = [...SERVICES_DATA, ...SERVICES_DATA, ...SERVICES_DATA];
 
   useEffect(() => {
     const track = trackRef.current;
+    const container = containerRef.current;
     if (!track) return;
 
     // Calculate the width of one complete set of services
@@ -41,35 +43,69 @@ export default function HorizontalFeaturedCarousel() {
     };
 
     updateDimensions();
-    window.addEventListener("resize", updateDimensions);
+    window.addEventListener("resize", updateDimensions, { passive: true });
 
     // Continuous auto-scroll animation loop (0.65px per frame = smooth cinematic speed)
     const speed = 0.65;
 
-    const animate = () => {
-      if (!isHovered && !isDragging) {
-        xPosRef.current -= speed;
+    const startAnimation = () => {
+      if (animationFrameRef.current !== null) return;
 
-        const setWidth = singleSetWidthRef.current || 2400;
-        if (Math.abs(xPosRef.current) >= setWidth) {
-          xPosRef.current += setWidth;
+      const animate = () => {
+        if (!isHovered && !isDragging && isVisibleRef.current) {
+          xPosRef.current -= speed;
+
+          const setWidth = singleSetWidthRef.current || 2400;
+          if (Math.abs(xPosRef.current) >= setWidth) {
+            xPosRef.current += setWidth;
+          }
+
+          if (track) {
+            track.style.transform = `translate3d(${xPosRef.current}px, 0, 0)`;
+          }
         }
 
-        if (track) {
-          track.style.transform = `translate3d(${xPosRef.current}px, 0, 0)`;
+        if (isVisibleRef.current) {
+          animationFrameRef.current = requestAnimationFrame(animate);
+        } else {
+          animationFrameRef.current = null;
         }
-      }
+      };
 
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animationFrameRef.current = requestAnimationFrame(animate);
+    const stopAnimation = () => {
+      if (animationFrameRef.current !== null) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
+      }
+    };
+
+    // IntersectionObserver to avoid background CPU burn when off-screen
+    let observer: IntersectionObserver | null = null;
+    if (typeof IntersectionObserver !== "undefined" && container) {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          isVisibleRef.current = entry.isIntersecting;
+          if (entry.isIntersecting) {
+            startAnimation();
+          } else {
+            stopAnimation();
+          }
+        },
+        { threshold: 0.05 }
+      );
+      observer.observe(container);
+    } else {
+      startAnimation();
+    }
 
     return () => {
       window.removeEventListener("resize", updateDimensions);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      if (observer) observer.disconnect();
+      stopAnimation();
     };
   }, [isHovered, isDragging]);
 

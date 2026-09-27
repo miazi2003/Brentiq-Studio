@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import CareerHero from "@/Components/CareerPage/CareerHero";
-import AboutUs from "@/Components/HomePageSections/AboutUs";
-import StudioCultureSection from "@/Components/CareerPage/StudioCultureSection";
+import WhyJoinBrentiqSection from "@/Components/CareerPage/WhyJoinBrentiqSection";
 import CurrentOpeningsSection from "@/Components/CareerPage/CurrentOpeningsSection";
+import StudioCultureSection from "@/Components/CareerPage/StudioCultureSection";
 import OpenApplicationForm from "@/Components/CareerPage/OpenApplicationForm";
 
 export const metadata: Metadata = {
@@ -14,20 +14,19 @@ export const metadata: Metadata = {
 export default function CareerPage() {
   return (
     <div className="w-full bg-white text-gray-900 min-h-screen" suppressHydrationWarning>
-      {/* 1. EDITORIAL HERO */}
+      {/* 1. EDITORIAL HERO (DARK & ORANGE GRADIENT) */}
       <CareerHero />
 
-      {/* 2. ABOUT US (HOMEPAGE PINNED SCENE) */}
-      <AboutUs />
+      {/* 2. WHY JOIN BRENTIQ SECTION */}
+      <WhyJoinBrentiqSection />
 
-      {/* 3. STUDIO CULTURE & VALUES */}
-      <StudioCultureSection />
-
-      {/* 4. OPEN SPECULATIVE APPLICATION FORM (HERO CTA CONTAINER) */}
-      {/* 4. CURRENT OPENINGS LISTINGS */}
+      {/* 3. CURRENT OPENINGS LISTINGS */}
       <CurrentOpeningsSection />
 
-      {/* 5. OPEN SPECULATIVE APPLICATION FORM (HERO CTA CONTAINER) */}
+      {/* 4. STUDIO CULTURE & VALUES */}
+      <StudioCultureSection />
+
+      {/* 5. OPEN SPECULATIVE APPLICATION FORM */}
       <OpenApplicationForm />
     </div>
   );

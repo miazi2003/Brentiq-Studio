@@ -74,6 +74,8 @@ export default function Services() {
   const leftColRef = useRef<HTMLDivElement>(null);
   const rightColRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
+  const xToRef = useRef<((value: number) => void) | null>(null);
+  const yToRef = useRef<((value: number) => void) | null>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -81,8 +83,14 @@ export default function Services() {
     const section = sectionRef.current;
     const leftCol = leftColRef.current;
     const rightCol = rightColRef.current;
+    const cursor = cursorRef.current;
 
     if (!section || !leftCol || !rightCol) return;
+
+    if (cursor) {
+      xToRef.current = gsap.quickTo(cursor, "x", { duration: 0.25, ease: "power2.out" });
+      yToRef.current = gsap.quickTo(cursor, "y", { duration: 0.25, ease: "power2.out" });
+    }
 
     const ctx = gsap.context(() => {
       gsap.set(leftCol, {
@@ -119,23 +127,18 @@ export default function Services() {
 
     return () => {
       ctx.revert();
+      xToRef.current = null;
+      yToRef.current = null;
     };
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cursorRef.current || window.innerWidth < 1024) return;
+    if (!cursorRef.current || !xToRef.current || !yToRef.current || window.innerWidth < 1024) return;
     const rect = sectionRef.current?.getBoundingClientRect();
     if (!rect) return;
 
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    gsap.to(cursorRef.current, {
-      x,
-      y,
-      duration: 0.25,
-      ease: "power2.out",
-    });
+    xToRef.current(e.clientX - rect.left);
+    yToRef.current(e.clientY - rect.top);
   };
 
   const activeService = SERVICES_DATA[activeIndex];

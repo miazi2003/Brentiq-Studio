@@ -193,22 +193,18 @@ export default function AboutUs() {
           ref={containerRef}
           className="relative w-full h-full rounded-[24px] sm:rounded-[36px] bg-[#fafafa] border border-gray-200/70 p-4 sm:p-8 lg:p-14 flex flex-col justify-between overflow-hidden shadow-sm isolate will-change-transform"
         >
-          {/* TOP ROW: About Us badge & Progressive Animated Copy */}
-          <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-4 sm:gap-8 lg:gap-12">
-            {/* Left: About Us with Glowing Red/Orange Dot */}
-            <div className="inline-flex items-center gap-2.5 pt-1 shrink-0">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5520] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5520] shadow-[0_0_8px_#FF5520]" />
-              </span>
-              <span className="text-xs sm:text-base font-semibold text-gray-900 font-body tracking-tight">
+          {/* TOP ROW: 150px Gradient About Us Heading & Progressive Animated Copy */}
+          <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-6 sm:gap-8 lg:gap-12">
+            {/* Left: 150px Black-to-Orange Gradient About Us Heading */}
+            <div className="shrink-0 flex items-start">
+              <h2 className="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[110px] xl:text-[135px] 2xl:text-[150px] font-black tracking-tight leading-[1.02] pb-4 pr-6 select-none bg-gradient-to-r from-black via-[#ea580c] to-[#FF5520] bg-clip-text text-transparent inline-block">
                 About Us
-              </span>
+              </h2>
             </div>
 
             {/* Right: Progressive Word Color Shift */}
-            <div className="max-w-3xl xl:max-w-4xl">
-              <p className="font-heading text-lg sm:text-2xl md:text-3xl lg:text-[38px] font-semibold leading-[1.24] tracking-tight">
+            <div className="max-w-2xl xl:max-w-3xl">
+              <p className="font-heading text-lg sm:text-2xl md:text-3xl lg:text-[34px] xl:text-[36px] font-semibold leading-[1.24] tracking-tight">
                 {words.map((word, i) => (
                   <span
                     key={i}

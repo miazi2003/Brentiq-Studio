@@ -4,33 +4,22 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
 
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
+const EXPLORE_LINKS = [
   { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Selected Works", href: "/works" },
   { label: "How We Work", href: "/#process" },
   { label: "FAQs", href: "/#questions" },
   { label: "Careers", href: "/career" },
-  { label: "Start a Project", href: "/#contact" },
 ];
 
 const SERVICE_LINKS = [
-  { label: "Custom Web Development", href: "/services" },
-  { label: "UI/UX Design & Systems", href: "/services" },
-  { label: "Shopify & E-commerce", href: "/services" },
-  { label: "Brand Strategy & Identity", href: "/services" },
-  { label: "Motion & Video Editing", href: "/services" },
-  { label: "Performance Marketing", href: "/services" },
-];
-
-const TECH_LINKS = [
-  { label: "Next.js & React", href: "#services" },
-  { label: "Shopify Plus", href: "#services" },
-  { label: "Webflow Development", href: "#services" },
-  { label: "Framer Websites", href: "#services" },
-  { label: "WordPress Solutions", href: "#services" },
-  { label: "Tailwind CSS", href: "#services" },
+  { label: "Custom Web Development", href: "/services/web-development" },
+  { label: "UI/UX Design & Systems", href: "/services/ui-ux" },
+  { label: "Shopify & E-commerce", href: "/services/shopify-ecommerce" },
+  { label: "Brand Strategy & Identity", href: "/services/branding" },
+  { label: "Motion & Video Editing", href: "/services/motion-video" },
+  { label: "Performance Marketing", href: "/services/performance-marketing" },
 ];
 
 function XIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -53,7 +42,7 @@ function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-    </svg>
+  </svg>
   );
 }
 
@@ -94,7 +83,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full px-3 sm:px-5 lg:px-6 pb-6 pt-2 bg-white">
-      {/* Main Footer Card with Background Hero Video */}
+      {/* Main Footer Card with Background Hero Visual */}
       <div className="relative w-full rounded-[24px] sm:rounded-[36px] overflow-hidden bg-black/50 backdrop-blur-sm text-white p-8 sm:p-12 lg:p-16 xl:p-20 border border-white/15 shadow-2xl isolate">
         
         {/* Background Image */}
@@ -106,16 +95,16 @@ export default function Footer() {
           className="absolute inset-0 w-full h-full object-cover object-center -z-20 pointer-events-none opacity-80 sm:opacity-90"
         />
 
-        {/* Video Color Overlay for crisp text contrast while keeping video vivid */}
+        {/* Video Color Overlay for crisp text contrast while keeping visual vivid */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70 -z-10 pointer-events-none" />
 
         {/* TOP SECTION: Left Brand & About + Right Navigation Columns */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           
           {/* ======================================================== */}
-          {/* LEFT COLUMN: Logo, About Brentiq & Contact Info           */}
+          {/* LEFT COLUMN: Logo, About Brentiq & Availability Status    */}
           {/* ======================================================== */}
-          <div className="lg:col-span-5 flex flex-col space-y-6 sm:space-y-8">
+          <div className="lg:col-span-4 flex flex-col space-y-6 sm:space-y-7">
             {/* Brentiq Logo */}
             <Link href="/" className="inline-flex items-center">
               <Image
@@ -128,7 +117,7 @@ export default function Footer() {
             </Link>
 
             {/* About Brentiq Text */}
-            <p className="font-body text-base sm:text-lg lg:text-xl text-white/85 leading-relaxed max-w-lg font-normal">
+            <p className="font-body text-base sm:text-lg text-white/85 leading-relaxed max-w-md font-normal">
               Brentiq Studio is a premier digital design and development agency.
               We build high-performance websites, bespoke brand identities, and
               scalable digital products that turn visions into memorable,
@@ -145,55 +134,20 @@ export default function Footer() {
                 Available for new projects worldwide
               </span>
             </div>
-
-            {/* Direct Email Action */}
-            <div className="pt-2">
-              <span className="font-heading text-sm uppercase tracking-wider text-white/60 block mb-2 font-semibold">
-                Get in Touch
-              </span>
-              <a
-                href="mailto:hello@brentiq.com"
-                className="group inline-flex items-center gap-3 text-lg sm:text-xl md:text-2xl font-bold text-white hover:text-[#FF5520] transition-colors font-body tracking-tight"
-              >
-                <Mail className="w-6 h-6 text-[#FF5520]" />
-                <span>hello@brentiq.com</span>
-                <ArrowUpRight className="w-5 h-5 text-white/40 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#FF5520]" />
-              </a>
-            </div>
-
-            {/* Social Media Icon Buttons */}
-            <div className="flex items-center gap-3.5 pt-2">
-              {SOCIAL_LINKS.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={item.name}
-                    title={item.name}
-                    className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-white/[0.08] hover:bg-[#FF5520] border border-white/15 hover:border-[#FF5520] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-md hover:shadow-[0_0_20px_rgba(255,85,32,0.45)] group cursor-pointer"
-                  >
-                    <Icon className="w-5 h-5 sm:w-5.5 sm:h-5.5 transition-transform duration-300 group-hover:scale-110 fill-current" />
-                  </a>
-                );
-              })}
-            </div>
           </div>
 
           {/* ======================================================== */}
-          {/* RIGHT COLUMNS: Navigation Links                          */}
+          {/* RIGHT COLUMNS: Explore, Services & Get In Touch           */}
           {/* ======================================================== */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 font-body">
+          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 font-body">
             
-            {/* Column 1: Main Navigation */}
+            {/* Column 1: Explore (Simplified menu items) */}
             <div className="space-y-4 sm:space-y-5">
               <h3 className="font-heading text-lg sm:text-xl font-bold text-white tracking-tight">
-                Navigation
+                Explore
               </h3>
               <ul className="space-y-3 sm:space-y-3.5 text-base sm:text-lg font-medium text-white/75">
-                {NAV_LINKS.map((link) => (
+                {EXPLORE_LINKS.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
@@ -227,24 +181,51 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Column 3: Technologies & CMS */}
-            <div className="space-y-4 sm:space-y-5">
+            {/* Column 3: Get in touch (Email & Social Media) */}
+            <div className="space-y-5 sm:space-y-6">
               <h3 className="font-heading text-lg sm:text-xl font-bold text-white tracking-tight">
-                Platforms
+                Get in touch
               </h3>
-              <ul className="space-y-3 sm:space-y-3.5 text-base sm:text-lg font-medium text-white/75">
-                {TECH_LINKS.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-[#FF5520] transition-colors inline-flex items-center gap-2 group py-0.5"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-white/25 group-hover:bg-[#FF5520] group-hover:shadow-[0_0_8px_#FF5520] transition-all" />
-                      <span>{link.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              
+              {/* Direct Email Action */}
+              <div className="space-y-2">
+                <span className="font-heading text-xs uppercase tracking-wider text-white/60 block font-semibold">
+                  Start A Conversation
+                </span>
+                <a
+                  href="mailto:hello@brentiq.com"
+                  className="group inline-flex items-center gap-2.5 text-base sm:text-lg font-bold text-white hover:text-[#FF5520] transition-colors font-body tracking-tight"
+                >
+                  <Mail className="w-5 h-5 text-[#FF5520] shrink-0" />
+                  <span className="break-all">hello@brentiq.com</span>
+                  <ArrowUpRight className="w-4 h-4 text-white/40 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-[#FF5520] shrink-0" />
+                </a>
+              </div>
+
+              {/* Social Media Links */}
+              <div className="space-y-2.5 pt-1">
+                <span className="font-heading text-xs uppercase tracking-wider text-white/60 block font-semibold">
+                  Follow Us
+                </span>
+                <div className="flex flex-wrap items-center gap-2.5">
+                  {SOCIAL_LINKS.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={item.name}
+                        title={item.name}
+                        className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/[0.08] hover:bg-[#FF5520] border border-white/15 hover:border-[#FF5520] text-white/80 hover:text-white flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 shadow-md hover:shadow-[0_0_18px_rgba(255,85,32,0.45)] group cursor-pointer"
+                      >
+                        <Icon className="w-4 h-4 sm:w-4.5 sm:h-4.5 transition-transform duration-300 group-hover:scale-110 fill-current" />
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
           </div>

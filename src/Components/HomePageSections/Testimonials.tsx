@@ -113,24 +113,31 @@ export default function Testimonials() {
   const scrollLeftStart = useRef(0);
 
   // Check scroll position to update progress & navigation buttons
+  const isUpdatingRef = useRef(false);
   const updateScrollState = useCallback(() => {
-    const el = sliderRef.current;
-    if (!el) return;
+    if (isUpdatingRef.current) return;
+    isUpdatingRef.current = true;
 
-    const { scrollLeft, scrollWidth, clientWidth } = el;
-    const maxScroll = scrollWidth - clientWidth;
+    window.requestAnimationFrame(() => {
+      isUpdatingRef.current = false;
+      const el = sliderRef.current;
+      if (!el) return;
 
-    if (maxScroll <= 0) {
-      setProgress(100);
-      setCanScrollLeft(false);
-      setCanScrollRight(false);
-      return;
-    }
+      const { scrollLeft, scrollWidth, clientWidth } = el;
+      const maxScroll = scrollWidth - clientWidth;
 
-    const currentProgress = Math.min(100, Math.max(0, (scrollLeft / maxScroll) * 100));
-    setProgress(currentProgress);
-    setCanScrollLeft(scrollLeft > 10);
-    setCanScrollRight(scrollLeft < maxScroll - 10);
+      if (maxScroll <= 0) {
+        setProgress(100);
+        setCanScrollLeft(false);
+        setCanScrollRight(false);
+        return;
+      }
+
+      const currentProgress = Math.min(100, Math.max(0, (scrollLeft / maxScroll) * 100));
+      setProgress(currentProgress);
+      setCanScrollLeft(scrollLeft > 10);
+      setCanScrollRight(scrollLeft < maxScroll - 10);
+    });
   }, []);
 
   useEffect(() => {
@@ -161,7 +168,7 @@ export default function Testimonials() {
     }, section);
 
     updateScrollState();
-    window.addEventListener("resize", updateScrollState);
+    window.addEventListener("resize", updateScrollState, { passive: true });
 
     return () => {
       ctx.revert();
